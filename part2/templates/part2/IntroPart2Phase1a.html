@@ -1,0 +1,28 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Introduction to Part 2 (Phase 1)
+{% endblock %}
+
+{% block content %}
+
+<p>
+    The instructions for Phase 1 of Part 2 are given here. You will receive additional instructions for Phase 2 after
+    Phase 1 is over.
+</p>
+<p>
+    Recall that you are a member of a group of four, i.e. you are in a group with three other members.
+    {% if treatment != "equality" %}
+    Each group has two members of Type A and two members of Type B. You will be informed of your Type and your
+    endowment at the beginning of Phase 1. Your Type and group of four will be the same throughout the experiment.
+    {% else %}
+    Your group of four will be the same throughout the experiment.
+    {% endif %}
+</p>
+
+{% next_button %}
+
+{% endblock %}
+
+

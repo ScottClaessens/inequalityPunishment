@@ -1,0 +1,63 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Introduction to Part 2
+{% endblock %}
+
+{% block content %}
+
+{% if treatment == "skills" %}
+    <p>
+        Assignment to types is based upon the relative performance within the group in the encoding task in Part 1: The
+        top two performers in Part 1 (i.e. the two group members who correctly encoded the most words) will be Type A
+        and will each receive an endowment of 80 tokens in each round in Part 2. The other two group members will be
+        Type B and will each receive an endowment of 20 tokens in each round in Part 2.
+    </p>
+    <p>
+        e.g. Suppose out of the 4 members in your group, one member solved 15 problems correctly, a second member
+        solved 12, a third member solved 10, and a fourth member solved 8 problems correctly in Part 1. Then the first
+        two group members will be Type A and receive 80 tokens per round in Part 2. The third and fourth group members
+        will be Type B and receive 20 tokens per round.
+    </p>
+{% elif treatment == "luck" %}
+    <p>
+        Assignment to types in based purely on luck. Within each group, two group members chosen randomly by the
+        computer will be Type A and will each receive an endowment of 80 tokens in each round in Part 2. The other two
+        group members will be Type B and will each receive an endowment of 20 tokens in each round in Part 2.
+    </p>
+{% elif treatment == "uncertain" %}
+    <p>
+        There are two different ways in which group members could be assigned to a type, Type A or Type B. With 50%
+        chance, assignment to Types in your group will be based on the relative performance of your group members in
+        Part 1 and with 50% chance, assignment to Types will be due to pure luck.
+    </p>
+    <p>
+        <b>(1)</b> If assignment to types is based on the relative performance within the group in the encoding task in Part 1,
+        the top two performers in Part 1 (i.e. the two group members who correctly encoded the most words) will be Type A
+        and will each receive an endowment of 80 tokens in each round in Part 2. The other two group members will be
+        Type B and will each receive an endowment of 20 tokens in each round in Part 2.
+    </p>
+    <p>
+        e.g. Suppose out of the 4 members in your group, one member solved 15 problems correctly, a second member
+        solved 12, a third member solved 10, and a fourth member solved 8 problems correctly in Part 1. Then the first
+        two group members will be Type A and receive 80 tokens per round in Part 2. The third and fourth group members
+        will be Type B and receive 20 tokens per round.
+    </p>
+    <p>
+        <b>(2)</b> If assignment to Types is based purely on luck, within each group two group members chosen randomly by the
+        computer will be Type A and will each receive an endowment of 80 tokens in each round in Part 2. The other two
+        group members will be Type B and will each receive an endowment of 20 tokens in each round in Part 2.
+    </p>
+    <p>
+        You will not be informed which of the above two ways (relative performance or luck) were used to determine Types
+        in your group. Regardless of how the Types are assigned, Type A participants will receive an endowment of 80 tokens
+        in each round of Part 2, and Type B participants will receive an endowment of 20 tokens in each round of Part 2.
+    </p>
+{% endif %}
+
+{% next_button %}
+
+{% endblock %}
+
+

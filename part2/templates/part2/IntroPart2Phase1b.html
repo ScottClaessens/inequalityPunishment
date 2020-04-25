@@ -1,0 +1,56 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Introduction to Part 2 (Phase 1)
+{% endblock %}
+
+{% block content %}
+
+<p>
+    There are 5 decision rounds in Phase 1.
+</p>
+<p>
+    In each decision round in Part 2, all group members will simultaneously make an <b>allocation decision</b>.
+</p>
+<p>
+    {% if treatment != "equality" %}
+    Type A members each receive an endowment of 80 tokens in each round, and Type B members each receive an endowment of
+    20 tokens in each round.
+    {% else %}
+    Group members each receive an endowment of 50 tokens in each round.
+    {% endif %}
+    The task of each group member is to allocate his/her endowment of tokens between his/her
+    private account and the group account. Each token not allocated to the group account will be automatically allocated
+    to members' private accounts. The total earnings of each group member include earnings both from their private account
+    and the group account.
+</p>
+<p>
+    <b>Earnings from your private account in each round:</b> You will earn one (1) token for each token allocated to your
+    private account. No one else will earn from your private account.
+</p>
+<p>
+    <b>Earnings from the group account in each round:</b> For each token you allocate to the group account, you will earn
+    0.4 tokens. Each of the other two members of your group will also earn 0.4 tokens for each token you allocate to the
+    group account. Thus, the allocation of 1 token to the group account yields a total of 1.6 tokens for your group. Your
+    earnings from the group account are based on the total number of tokens allocated to the group account by all members
+    in your group. Each member will profit equally from the tokens allocated to the group account - for each token allocated
+    to the group account, each member of your group will earn 0.4 tokens regardless of who made the allocation. This means
+    that you will earn from your own allocation to the group account, as well as from the allocations to the group account
+    of your three group members.
+</p>
+<p>
+    Tokens you do not allocate to the group account are automatically allocated to the private account.
+</p>
+<p>
+    <b>
+        Your earnings from the decision round = (Your endowment - number of tokens allocated to the group account by you)
+        + 0.4 x (total allocation to the group account by all four group members)
+    </b>
+</p>
+
+{% next_button %}
+
+{% endblock %}
+
+

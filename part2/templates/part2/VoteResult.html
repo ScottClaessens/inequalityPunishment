@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Vote (Part 2, Phase {{phase}})
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Your group voted for a {{finerate}} fine rate in Phase {{phase}}.
+</p>
+<p>
+    Click Next to begin the phase.
+</p>
+
+{% next_button %}
+
+{% endblock %}
+
+

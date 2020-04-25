@@ -1,0 +1,30 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Introduction to Part 2 (Phase 2)
+{% endblock %}
+
+{% block content %}
+
+<p>
+    After all individuals have made their decisions, you will be informed of the total allocation to the group account,
+    how much you were fined, and your individual earnings in tokens from the round.
+</p>
+<p>
+    You will not be informed of the individual allocation decisions or earnings of the other members of your group.
+</p>
+<p>
+    At the beginning of each round, you will receive a fresh endowment of tokens
+    (same in each round{% if treatment != "equality" %} depending on your Type{% endif %}).
+    The same process will be repeated for a total of 5 rounds in this Phase.
+</p>
+<p>
+    You will be paid your earnings from all 5 decision rounds in this Phase.
+</p>
+
+{% next_button %}
+
+{% endblock %}
+
+

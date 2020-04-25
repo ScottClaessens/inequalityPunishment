@@ -1,0 +1,48 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Introduction to Part 2 (Phase 2)
+{% endblock %}
+
+{% block content %}
+
+<p>
+    <b><u>Example 2</u></b>
+</p>
+<p>
+    {% if treatment != "equality" %}
+    Suppose you are assigned Type A (80 token endowment) at the beginning of Part 2. One other member of your group is
+    also Type A (also 80 token endowment), and the other two members are Type B (20 token endowments each).
+    {% endif %}
+    <b>Suppose your group votes on an 80% fine rate at the beginning of this Phase.</b>
+</p>
+<p>
+    Consider the same allocation decisions as in Example 1. Suppose you allocate 35 tokens of your
+    {% if treatment != "equality" %}80 token{% endif %} endowment to
+    the group account. Further, suppose that the other Type A member allocates 49 tokens to the group account, one Type B
+    member allocates 18 tokens to the group account, and the other Type B member allocates 0 tokens to the group account.
+    In this case, the sum of tokens in the group account is (35+49+18+0) = 102 tokens. All members receive an income of
+    0.4*102 = 40.8 tokens from the group account.
+</p>
+{% if treatment != "equality" %}
+<ul>
+    <li>Your earnings are: (80 - 35) + (0.4 * 102) - (0.8 * 45) - 4 = 45 + 40.8 - 36 - 4 = 45.8 tokens</li>
+    <li>The other Type A member's earnings are: (80 - 49) + (0.4 * 102) - (0.8 * 31) - 4 = 31 + 40.8 - 24.8 - 4 = 43 tokens</li>
+    <li>One Type B member's earnings are: (20 - 18) + (0.4 * 102) - (0.8 * 2) - 4 = 2 + 40.8 - 1.6 - 4 = 37.2 tokens</li>
+    <li>The other Type B member's earnings are: (20 - 0) + (0.4 * 102) - (0.8 * 20) - 4 = 20 + 40.8 - 16 - 4 = 40.8 tokens</li>
+</ul>
+{% else %}
+<ul>
+    <li>Your earnings are: (50 - 35) + (0.4 * 102) - (0.8 * 15) - 4 = 15 + 40.8 - 12 - 4 = 39.8 tokens</li>
+    <li>One member's earnings are: (50 - 49) + (0.4 * 102) - (0.8 * 1) - 4 = 1 + 40.8 - 0.8 - 4 = 37 tokens</li>
+    <li>Another member's earnings are: (50 - 18) + (0.4 * 102) - (0.8 * 32) - 4 = 32 + 40.8 - 25.6 - 4 = 43.2 tokens</li>
+    <li>The other member's earnings are: (50 - 0) + (0.4 * 102) - (0.8 * 50) - 4 = 50 + 40.8 - 40 - 4 = 46.8 tokens</li>
+</ul>
+{% endif %}
+
+{% next_button %}
+
+{% endblock %}
+
+

@@ -1,0 +1,34 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Welcome to the study!
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Welcome! You are now taking part in a decision-making experiment. You will be paid £2.50 as a show up fee.
+    Depending on your decisions and the decisions of other participants, you will be able to earn money in addition
+    to the £2.50 guaranteed by your participation. Please read the following instructions carefully.
+</p>
+<p>
+    <i>
+        It is important that you remain silent and do not look at other people's work. If you have any questions, or
+        need assistance of any kind, please raise your hand and an experimenter will come to you. If you talk, laugh,
+        exclaim out loud, etc., you will be asked to leave and you will not be paid. We expect and appreciate your
+        following of these rules.
+    </i>
+</p>
+<p>
+    During the experiment, you cannot communicate with other participants. If you have a question, raise your hand
+    and your question will be answered privately.
+</p>
+<p>
+    This experiment consists of <b>two parts</b>. The instructions for Part 1 are given on the next screen. You will
+    receive additional instructions for Part 2 after Part 1 is over.
+</p>
+
+{% next_button %}
+
+{% endblock %}

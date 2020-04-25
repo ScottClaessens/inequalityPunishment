@@ -1,0 +1,41 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Introduction to Part 2
+{% endblock %}
+
+{% block content %}
+
+<p>
+    During Part 2, all decisions are made in tokens (more details below). Your total earnings will also be calculated
+    in tokens and, at the end of the experiment will be converted to Pounds at the following rate:
+</p>
+<p>
+    <b>
+        110 tokens = £1.00
+    </b>
+</p>
+{% if treatment != "equality" %}
+    <p>
+        There will be two types of members in each group - Type A and Type B. Of the four members of each group, two will
+        be Type A and two will be Type B.
+    </p>
+{% endif %}
+<p>
+    There will be several decision rounds in Part 2. At the beginning of each round, each group member receives an
+    endowment of tokens.
+    {% if treatment != "equality" %}
+    The difference between the two types of players is the endowment of tokens they receive.
+    In particular, <b>Type A group members will receive an endowment of 80 tokens in each round, while Type B group
+    members will receive an endowment of 20 tokens in each round.</b>
+    {% else %}
+    Group members will receive an endowment of 50 tokens in each round.
+    {% endif %}
+</p>
+
+{% next_button %}
+
+{% endblock %}
+
+

@@ -1,0 +1,23 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Results (Part 2, Phase {{phase}}, Round {{round}})
+{% endblock %}
+
+{% block content %}
+
+<p>
+    In this round, you allocated <b>{{player.allocation}}</b> to the group account, and your group allocated
+    <b>{{group.group_account}}</b> in total to the group account. {% if phase > 1 %}You were fined
+    <b>{{player.fined}}</b>.{% endif %}
+</p>
+<p>
+    You earned <b>{{player.payoff}}</b> from this round.
+</p>
+
+{% next_button %}
+
+{% endblock %}
+
+

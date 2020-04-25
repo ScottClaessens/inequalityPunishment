@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Decision (Part 2, Phase {{phase}}, Round {{round}})
+{% endblock %}
+
+{% block content %}
+
+<p>
+    This is Phase {{phase}}, Round {{round}}. {% if treatment != "equality" %}You are <b>{{type}}</b>.{% endif %}
+    You have been endowed with {{endowment}}.
+</p>
+
+{% formfield player.allocation %}
+
+{% next_button %}
+
+{% endblock %}
+
+

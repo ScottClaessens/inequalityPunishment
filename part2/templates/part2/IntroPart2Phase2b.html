@@ -1,0 +1,33 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Introduction to Part 2 (Phase 2)
+{% endblock %}
+
+{% block content %}
+
+<p>
+    <u><b>Voting procedure</b></u>
+</p>
+<p>
+    All group members simultaneously vote on whether the fine rate will be 0%, 30%, 60% or 80%. Each group member can
+    vote on <b>one</b> of the possible fine rates. The fine rate that receives at least two votes will apply for the
+    rest of Phase 2. If there is a tie, one of the tied fine rates will be chosen randomly and applied in the rest of
+    Phase 2. Each of the tied fine rates has an equal chance of being chosen.
+</p>
+<p>
+    Note that a fine rate of 0% essentially means that no one will be fined for their allocations. Also, a fine rate of
+    0% means that no one will pay the fixed fine fee.
+</p>
+<p>
+    After all members of your group have voted, you will be informed of the outcome of the vote in your group, and the
+    fine rate that will apply in your group. The outcome of the vote is binding for your group in all 5 decision rounds
+    in Phase 2.
+</p>
+
+{% next_button %}
+
+{% endblock %}
+
+
