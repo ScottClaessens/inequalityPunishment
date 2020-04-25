@@ -20,7 +20,7 @@ Inequality and punishment (Part 1)
 class Constants(BaseConstants):
     name_in_url = 'part1'
     players_per_group = 4
-    num_rounds = 5
+    num_rounds = 60
     wage = 0.10
 
     table = {
