@@ -22,7 +22,7 @@ Inequality and punishment (Part 2)
 class Constants(BaseConstants):
     name_in_url = 'part2'
     players_per_group = 4
-    num_rounds = 30
+    num_rounds = 20
 
 
 class Subsession(BaseSubsession):
@@ -81,7 +81,7 @@ class Group(BaseGroup):
             group_account += p.allocation
         self.group_account = group_account
         group_payoff = group_account*1.6
-        if 6 <= self.round_number <= 30:
+        if 5 <= self.round_number <= 20:
             fine_rate = self.get_player_by_id(1).participant.vars['part2_finerate']
             if fine_rate > 0:
                 fixed = c(4)
@@ -159,9 +159,8 @@ class Player(BasePlayer):
     )
     comp2 = models.CurrencyField(label="")
     comp3 = models.CurrencyField(label="")
-    comp4a = models.CurrencyField(label="How much do you earn?")
-    comp4b = models.CurrencyField(label="How much does the other Type A group member earn?")
-    comp4c = models.CurrencyField(label="How much does each Type B group member earn?")
+    comp4a = models.CurrencyField(label="How much do you and the other Type A member each earn?")
+    comp4b = models.CurrencyField(label="How much does each Type B group member earn?")
     comp5a = models.CurrencyField(label="How much do you earn if you allocate 0 tokens to the group account?")
     comp5b = models.CurrencyField(label="How much do you earn if you allocate 10 tokens to the group account?")
     comp5c = models.CurrencyField(label="How much do you earn if you allocate 20 tokens to the group account?")
@@ -184,7 +183,7 @@ class Player(BasePlayer):
         ]
     )
     comp12 = models.StringField(
-        label="Will the voted fine rate be implemented in each of the 5 rounds in Phase 2?",
+        label="Will the voted fine rate be implemented in each of the 4 rounds in Phase 2?",
         choices=[
             ["Yes", "Yes"],
             ["No", "No"]
@@ -262,10 +261,6 @@ class Player(BasePlayer):
             return 'The correct answer is 80 tokens'
 
     def comp4b_error_message(self, value):
-        if value != c(80):
-            return 'The correct answer is 80 tokens'
-
-    def comp4c_error_message(self, value):
         if value != c(20):
             return 'The correct answer is 20 tokens'
 

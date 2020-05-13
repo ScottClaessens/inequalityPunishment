@@ -21,7 +21,7 @@ class Constants(BaseConstants):
     name_in_url = 'part1'
     players_per_group = 4
     num_rounds = 60
-    wage = 0.10
+    wage = c(10)
 
     table = {
         'A': 8,  'B': 12, 'C': 14, 'E': 9,  'F': 6,  'G': 24, 'H': 22, 'I': 7,  'J': 5,  'K': 11, 'L': 3,
@@ -42,6 +42,4 @@ class Player(BasePlayer):
     input1 = models.IntegerField(min=1, max=26)
     input2 = models.IntegerField(min=1, max=26)
     input3 = models.IntegerField(min=1, max=26)
-    input4 = models.IntegerField(min=1, max=26)
-    input5 = models.IntegerField(min=1, max=26)
 

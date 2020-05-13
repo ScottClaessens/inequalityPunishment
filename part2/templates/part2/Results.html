@@ -13,6 +13,10 @@
     <b>{{player.fined}}</b>.{% endif %}
 </p>
 <p>
+    ({{endowment}} - {{player.allocation}}) + (0.4 * {{group.group_account}})
+    {% if phase > 1 %}- {{player.fined}}{% endif %} = {{player.payoff}}
+</p>
+<p>
     You earned <b>{{player.payoff}}</b> from this round.
 </p>
 

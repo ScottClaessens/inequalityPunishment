@@ -2,27 +2,13 @@
 {% load otree static %}
 
 {% block title %}
-    Introduction to Part 2 (Phase 1)
+    Bonus earnings in each round
 {% endblock %}
 
 {% block content %}
 
 <p>
-    There are 5 decision rounds in Phase 1.
-</p>
-<p>
-    In each decision round in Part 2, all group members will simultaneously make an <b>allocation decision</b>.
-</p>
-<p>
-    {% if treatment != "equality" %}
-    Type A members each receive an endowment of 80 tokens in each round, and Type B members each receive an endowment of
-    20 tokens in each round.
-    {% else %}
-    Group members each receive an endowment of 50 tokens in each round.
-    {% endif %}
-    The task of each group member is to allocate his/her endowment of tokens between his/her
-    private account and the group account. Each token not allocated to the group account will be automatically allocated
-    to members' private accounts. The total earnings of each group member include earnings both from their private account
+    The total earnings of each group member include earnings both from their private account
     and the group account.
 </p>
 <p>
@@ -38,9 +24,6 @@
     to the group account, each member of your group will earn 0.4 tokens regardless of who made the allocation. This means
     that you will earn from your own allocation to the group account, as well as from the allocations to the group account
     of your three group members.
-</p>
-<p>
-    Tokens you do not allocate to the group account are automatically allocated to the private account.
 </p>
 <p>
     <b>

@@ -12,6 +12,4 @@ class PlayerBot(Bot):
             yield pages.IntroPart1
         yield pages.Task, dict(input1=random.choice(list(range(1, 27))),
                                input2=random.choice(list(range(1, 27))),
-                               input3=random.choice(list(range(1, 27))),
-                               input4=random.choice(list(range(1, 27))),
-                               input5=random.choice(list(range(1, 27))))
+                               input3=random.choice(list(range(1, 27))))

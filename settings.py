@@ -7,7 +7,7 @@ from os import environ
 
 SESSION_CONFIG_DEFAULTS = dict(
     # use_browser_bots=True,
-    real_world_currency_per_point=(1/110),
+    real_world_currency_per_point=(1/300),
     participation_fee=2.50,
     doc=""
 )

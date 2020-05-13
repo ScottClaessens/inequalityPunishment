@@ -8,18 +8,12 @@ class IntroPart2a(Page):
     def is_displayed(self):
         return self.round_number == 1
 
-
-class IntroPart2b(Page):
-    def is_displayed(self):
-        return self.round_number == 1
-
     def vars_for_template(self):
         return dict(
             treatment=self.session.config['treatment']
         )
 
-
-class IntroPart2c(Page):
+class IntroPart2b(Page):
     def is_displayed(self):
         return self.round_number == 1 and self.session.config['treatment'] != 'equality'
 
@@ -27,11 +21,6 @@ class IntroPart2c(Page):
         return dict(
             treatment=self.session.config['treatment']
         )
-
-
-class IntroPart2d(Page):
-    def is_displayed(self):
-        return self.round_number == 1
 
 
 class IntroPart2Phase1a(Page):
@@ -76,22 +65,22 @@ class IntroPart2Phase1d(Page):
 
 class IntroPart2Phase2a(Page):
     def is_displayed(self):
-        return self.round_number == 6
+        return self.round_number == 5
 
 
 class IntroPart2Phase2b(Page):
     def is_displayed(self):
-        return self.round_number == 6
+        return self.round_number == 5
 
 
 class IntroPart2Phase2c(Page):
     def is_displayed(self):
-        return self.round_number == 6
+        return self.round_number == 5
 
 
 class IntroPart2Phase2d(Page):
     def is_displayed(self):
-        return self.round_number == 6
+        return self.round_number == 5
 
     def vars_for_template(self):
         return dict(
@@ -101,7 +90,7 @@ class IntroPart2Phase2d(Page):
 
 class IntroPart2Phase2e(Page):
     def is_displayed(self):
-        return self.round_number == 6
+        return self.round_number == 5
 
     def vars_for_template(self):
         return dict(
@@ -111,22 +100,17 @@ class IntroPart2Phase2e(Page):
 
 class IntroPart2Phase3(Page):
     def is_displayed(self):
-        return self.round_number == 11
+        return self.round_number == 9
 
 
 class IntroPart2Phase4(Page):
     def is_displayed(self):
-        return self.round_number == 16
+        return self.round_number == 13
 
 
 class IntroPart2Phase5(Page):
     def is_displayed(self):
-        return self.round_number == 21
-
-
-class IntroPart2Phase6(Page):
-    def is_displayed(self):
-        return self.round_number == 26
+        return self.round_number == 17
 
 
 class CompPart2Phase1a(Page):
@@ -143,12 +127,12 @@ class CompPart2Phase1a(Page):
     def get_form_fields(self):
         if self.session.config['treatment'] == 'skills':
             return ['comp1a', 'comp1b', 'comp1c', 'comp1d',
-                    'comp2', 'comp3', 'comp4a', 'comp4b', 'comp4c',
+                    'comp2', 'comp3', 'comp4a', 'comp4b',
                     'comp5a', 'comp5b', 'comp5c']
         elif self.session.config['treatment'] == 'equality':
             return ['comp6', 'comp7a', 'comp7b', 'comp8a', 'comp8b', 'comp8c']
         else:
-            return ['comp2', 'comp3', 'comp4a', 'comp4b', 'comp4c',
+            return ['comp2', 'comp3', 'comp4a', 'comp4b',
                     'comp5a', 'comp5b', 'comp5c']
 
 
@@ -167,7 +151,7 @@ class CompPart2Phase2a(Page):
                    'comp13', 'comp14', 'comp15a', 'comp15b']
 
     def is_displayed(self):
-        return self.round_number == 6
+        return self.round_number == 5
 
     def vars_for_template(self):
         return dict(
@@ -177,12 +161,12 @@ class CompPart2Phase2a(Page):
 
 class CompPart2Phase2b(Page):
     def is_displayed(self):
-        return self.round_number == 6
+        return self.round_number == 5
 
 
 class Wait1(WaitPage):
     def is_displayed(self):
-        return self.round_number in [1, 6]
+        return self.round_number in [1, 5]
 
 
 class Vote(Page):
@@ -190,31 +174,31 @@ class Vote(Page):
     form_fields = ['vote']
 
     def is_displayed(self):
-        return self.round_number in [6, 11, 16, 21, 26]
+        return self.round_number in [5, 9, 13, 17]
 
     def vars_for_template(self):
         return dict(
             type=self.participant.vars['part2_type'],
             endowment=self.participant.vars['part2_endowment'],
-            phase=(self.round_number // 5) + 1,
+            phase=(self.round_number // 4) + 1,
             treatment=self.session.config['treatment']
         )
 
 
 class VoteResult(Page):
     def is_displayed(self):
-        return self.round_number in [6, 11, 16, 21, 26]
+        return self.round_number in [5, 9, 13, 17]
 
     def vars_for_template(self):
         return dict(
-            phase=(self.round_number // 5) + 1,
+            phase=(self.round_number // 4) + 1,
             finerate=str(int(self.participant.vars['part2_finerate']*100)) + "%"
         )
 
 
 class Wait2(WaitPage):
     def is_displayed(self):
-        return self.round_number in [6, 11, 16, 21, 26]
+        return self.round_number in [5, 9, 13, 17]
 
     after_all_players_arrive = 'set_fine_rate'
 
@@ -227,8 +211,8 @@ class Decision(Page):
         return dict(
             type=self.participant.vars['part2_type'],
             endowment=self.participant.vars['part2_endowment'],
-            phase=((self.round_number - 1) // 5) + 1,
-            round=((self.round_number - 1) % 5) + 1,
+            phase=((self.round_number - 1) // 4) + 1,
+            round=((self.round_number - 1) % 4) + 1,
             treatment=self.session.config['treatment']
         )
 
@@ -240,15 +224,14 @@ class Wait3(WaitPage):
 class Results(Page):
     def vars_for_template(self):
         return dict(
-            phase=(self.round_number // 5) + 1,
-            round=((self.round_number - 1) % 5) + 1
+            phase=((self.round_number - 1) // 4) + 1,
+            round=((self.round_number - 1) % 4) + 1,
+            endowment=self.participant.vars['part2_endowment']
         )
 
 
 page_sequence = [IntroPart2a,
                  IntroPart2b,
-                 IntroPart2c,
-                 IntroPart2d,
                  IntroPart2Phase1a,
                  IntroPart2Phase1b,
                  IntroPart2Phase1c,
@@ -261,7 +244,6 @@ page_sequence = [IntroPart2a,
                  IntroPart2Phase3,
                  IntroPart2Phase4,
                  IntroPart2Phase5,
-                 IntroPart2Phase6,
                  CompPart2Phase1a,
                  CompPart2Phase1b,
                  CompPart2Phase2a,

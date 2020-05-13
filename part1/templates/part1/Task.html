@@ -14,8 +14,8 @@
 </style>
 
 <p>
-    Please use the code provided to translate the random strings into the corresponding numerical code. You have 5
-    minutes to complete as many encodings as you choose. For every correct encoding you submit, you will earn £0.10.
+    Please use the code provided to translate the random strings into the corresponding numerical code. You have 3
+    minutes to complete as many encodings as you choose. For every correct encoding you submit, you will earn 10 tokens.
 </p>
 <img src="{% static 'img/table.jpg' %}" id = "letter-table"/>
 <br>
@@ -26,8 +26,6 @@
     <td><b>{{letter1}}:</b> {% formfield player.input1 label=""%}</td>
     <td><b>{{letter2}}:</b> {% formfield player.input2 label=""%}</td>
     <td><b>{{letter3}}:</b> {% formfield player.input3 label=""%}</td>
-    <td><b>{{letter4}}:</b> {% formfield player.input4 label=""%}</td>
-    <td><b>{{letter5}}:</b> {% formfield player.input5 label=""%}</td>
   </tr>
 </table>
 
@@ -37,7 +35,7 @@
 <table>
     <tr>
         <td><b>Wage:</b></td>
-        <td>£{{wage}}</td>
+        <td>{{wage}}</td>
     </tr>
     <tr>
         <td><b>Correct:</b></td>
@@ -49,7 +47,7 @@
     </tr>
     <tr>
         <td><b>Earnings:</b></td>
-        <td>£{{earnings}}</td>
+        <td>{{earnings}}</td>
     </tr>
 </table>
 
