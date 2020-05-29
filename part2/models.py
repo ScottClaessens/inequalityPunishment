@@ -39,18 +39,18 @@ class Group(BaseGroup):
         part1.sort(key=lambda x: x[1])
 
         def skill():
-            part1[3][0].participant.vars['part2_type'] = 'Type A'
-            part1[2][0].participant.vars['part2_type'] = 'Type A'
-            part1[1][0].participant.vars['part2_type'] = 'Type B'
-            part1[0][0].participant.vars['part2_type'] = 'Type B'
+            part1[3][0].participant.vars['part2_type'] = 'Type-A'
+            part1[2][0].participant.vars['part2_type'] = 'Type-A'
+            part1[1][0].participant.vars['part2_type'] = 'Type-B'
+            part1[0][0].participant.vars['part2_type'] = 'Type-B'
 
         def luck():
             x = [1, 2, 3, 4]
             random.shuffle(x)
-            self.get_player_by_id(x[0]).participant.vars['part2_type'] = 'Type A'
-            self.get_player_by_id(x[1]).participant.vars['part2_type'] = 'Type A'
-            self.get_player_by_id(x[2]).participant.vars['part2_type'] = 'Type B'
-            self.get_player_by_id(x[3]).participant.vars['part2_type'] = 'Type B'
+            self.get_player_by_id(x[0]).participant.vars['part2_type'] = 'Type-A'
+            self.get_player_by_id(x[1]).participant.vars['part2_type'] = 'Type-A'
+            self.get_player_by_id(x[2]).participant.vars['part2_type'] = 'Type-B'
+            self.get_player_by_id(x[3]).participant.vars['part2_type'] = 'Type-B'
 
         # types
         if self.session.config['treatment'] == 'skills':
@@ -68,7 +68,7 @@ class Group(BaseGroup):
         # endowments
         for p in self.get_players():
             if self.session.config['treatment'] != 'equality':
-                if p.participant.vars['part2_type'] == 'Type A':
+                if p.participant.vars['part2_type'] == 'Type-A':
                     p.participant.vars['part2_endowment'] = c(80)
                 else:
                     p.participant.vars['part2_endowment'] = c(20)
@@ -83,6 +83,7 @@ class Group(BaseGroup):
         group_payoff = group_account*1.6
         if 5 <= self.round_number <= 20:
             fine_rate = self.get_player_by_id(1).participant.vars['part2_finerate']
+            print("payoffs fine_rate =", fine_rate)
             if fine_rate > 0:
                 fixed = c(4)
             else:
@@ -100,6 +101,7 @@ class Group(BaseGroup):
         chosen_rates = []
         for p in self.get_players():
             chosen_rates.append(p.vote)
+        print("chosen_rates =", chosen_rates)
         # which of these rates got 2 or more votes?
         rates_with_two_votes = [k for k, v in dict(Counter(chosen_rates)).items() if v >= 2]
         if not rates_with_two_votes:
@@ -110,16 +112,18 @@ class Group(BaseGroup):
             fine_rate = random.choice(rates_with_two_votes)
         else:
             # if only one rate got two votes
-            fine_rate = rates_with_two_votes
+            fine_rate = rates_with_two_votes[0]
+        print("fine_rate =", fine_rate)
         # as a decimal
-        if fine_rate[0] == "0%":
+        if fine_rate == "0%":
             fine_rate = 0
-        elif fine_rate[0] == "30%":
+        elif fine_rate == "30%":
             fine_rate = 0.3
-        elif fine_rate[0] == "60%":
+        elif fine_rate == "60%":
             fine_rate = 0.6
-        elif fine_rate[0] == "80%":
+        elif fine_rate == "80%":
             fine_rate = 0.8
+        print("fine_rate decimal =", fine_rate)
         # set fine rate
         for p in self.get_players():
             p.participant.vars['part2_finerate'] = fine_rate
@@ -132,35 +136,35 @@ class Player(BasePlayer):
     comp1a = models.StringField(
         label="Member 1:",
         choices=[
-            ['Type A', 'Type A'],
-            ['Type B', 'Type B']
+            ['Type-A', 'Type-A'],
+            ['Type-B', 'Type-B']
         ]
     )
     comp1b = models.StringField(
         label="Member 2:",
         choices=[
-            ['Type A', 'Type A'],
-            ['Type B', 'Type B']
+            ['Type-A', 'Type-A'],
+            ['Type-B', 'Type-B']
         ]
     )
     comp1c = models.StringField(
         label="Member 3:",
         choices=[
-            ['Type A', 'Type A'],
-            ['Type B', 'Type B']
+            ['Type-A', 'Type-A'],
+            ['Type-B', 'Type-B']
         ]
     )
     comp1d = models.StringField(
         label="Member 4:",
         choices=[
-            ['Type A', 'Type A'],
-            ['Type B', 'Type B']
+            ['Type-A', 'Type-A'],
+            ['Type-B', 'Type-B']
         ]
     )
     comp2 = models.CurrencyField(label="")
     comp3 = models.CurrencyField(label="")
-    comp4a = models.CurrencyField(label="How much do you and the other Type A member each earn?")
-    comp4b = models.CurrencyField(label="How much does each Type B group member earn?")
+    comp4a = models.CurrencyField(label="How much do you and the other Type-A member each earn?")
+    comp4b = models.CurrencyField(label="How much does each Type-B group member earn?")
     comp5a = models.CurrencyField(label="How much do you earn if you allocate 0 tokens to the group account?")
     comp5b = models.CurrencyField(label="How much do you earn if you allocate 10 tokens to the group account?")
     comp5c = models.CurrencyField(label="How much do you earn if you allocate 20 tokens to the group account?")
@@ -205,12 +209,12 @@ class Player(BasePlayer):
         label="What is your fine payment if the fine rate is voted to be 0%?"
     )
     comp15b = models.CurrencyField(
-        label="In addition to the fixed fine fee, what is your fine payment if the fine rate is voted to be 60%?"
+        label="Before the fixed fine fee, what is your fine payment if the fine rate is voted to be 60%?"
     )
 
     # vote
     vote = models.StringField(
-        label="Which fine rate will you vote for in this phase?",
+        label="Which fine rate do you vote for in this phase?",
         choices=[
             ["0%", "0%"],
             ["30%", "30%"],
@@ -222,7 +226,7 @@ class Player(BasePlayer):
     # allocation decision
     allocation = models.CurrencyField(
         min=0,
-        label="How many tokens will you allocate to the group account in this round?"
+        label="How many tokens would you like to allocate to the group account in this round?"
     )
 
     def allocation_max(self):
@@ -233,20 +237,20 @@ class Player(BasePlayer):
 
     # comprehension error messages
     def comp1a_error_message(self, value):
-        if value != 'Type A':
-            return 'The correct answer is Type A'
+        if value != 'Type-A':
+            return 'The correct answer is Type-A'
 
     def comp1b_error_message(self, value):
-        if value != 'Type B':
-            return 'The correct answer is Type B'
+        if value != 'Type-B':
+            return 'The correct answer is Type-B'
 
     def comp1c_error_message(self, value):
-        if value != 'Type B':
-            return 'The correct answer is Type B'
+        if value != 'Type-B':
+            return 'The correct answer is Type-B'
 
     def comp1d_error_message(self, value):
-        if value != 'Type A':
-            return 'The correct answer is Type A'
+        if value != 'Type-A':
+            return 'The correct answer is Type-A'
 
     def comp2_error_message(self, value):
         if value != c(80):

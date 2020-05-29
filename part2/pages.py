@@ -192,7 +192,7 @@ class VoteResult(Page):
     def vars_for_template(self):
         return dict(
             phase=(self.round_number // 4) + 1,
-            finerate=str(int(self.participant.vars['part2_finerate']*100)) + "%"
+            finerate=str(self.participant.vars['part2_finerate']*100) + "%"
         )
 
 

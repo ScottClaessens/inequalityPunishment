@@ -2,6 +2,7 @@ from otree.api import Currency as c, currency_range
 from . import pages
 from ._builtin import Bot
 from .models import Constants
+import random
 
 
 class PlayerBot(Bot):
@@ -28,10 +29,10 @@ class PlayerBot(Bot):
             yield pages.IntroPart2Phase5
         if self.round_number == 1:
             if self.session.config['treatment'] == 'skills':
-                yield pages.CompPart2Phase1a, dict(comp1a='Type A',
-                                                   comp1b='Type B',
-                                                   comp1c='Type B',
-                                                   comp1d='Type A',
+                yield pages.CompPart2Phase1a, dict(comp1a='Type-A',
+                                                   comp1b='Type-B',
+                                                   comp1c='Type-B',
+                                                   comp1d='Type-A',
                                                    comp2=c(80),
                                                    comp3=c(20),
                                                    comp4a=c(80),
@@ -66,7 +67,7 @@ class PlayerBot(Bot):
                                                comp15b=c(12))
             yield pages.CompPart2Phase2b
         if self.round_number in [5, 9, 13, 17]:
-            yield pages.Vote, dict(vote='0%')
+            yield pages.Vote, dict(vote=random.choice(["0%", "30%", "60%", "80%"]))
             yield pages.VoteResult
         yield pages.Decision, dict(allocation=c(0))
         yield pages.Results

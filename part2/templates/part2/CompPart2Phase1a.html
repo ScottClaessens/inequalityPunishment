@@ -9,8 +9,11 @@
 
 <p>
     We will now ask you a few questions regarding the decisions you will make in the experiment. These questions will
-    help you understand the calculation of your earnings and ensure you have understood the instructions. Once everyone
-    has answered all questions correctly we will begin the experiment.
+    help you understand the calculation of your earnings and ensure you understood the instructions. Once everyone
+    in your group answers all questions correctly, we will begin Phase 1.
+</p>
+<p>
+    You can use the calculator on your device to answer these questions.
 </p>
 {% if treatment != "equality" %}
     {% if treatment == "skills" %}
@@ -31,25 +34,24 @@
     {% endif %}
     <p>
         <b>Question {% if treatment == "skills" %}2{% else %}1{% endif %}.</b>
-        How many tokens are each Type A group member endowed with in each round?
+        How many tokens are each Type-A group member endowed with in each round?
     </p>
     {% formfield player.comp2 %}
     <p>
         <b>Question {% if treatment == "skills" %}3{% else %}2{% endif %}.</b>
-        How many tokens are each Type B group member endowed with in each round?
+        How many tokens are each Type-B group member endowed with in each round?
     </p>
     {% formfield player.comp3 %}
 
     <p>
         <b>Question {% if treatment == "skills" %}4{% else %}3{% endif %}.</b>
-        Suppose you are assigned to Type A. Further, suppose all four group members allocate 0 tokens to the group account.
+        Suppose you are assigned to Type-A. Further, suppose all four group members allocate 0 tokens to the group account.
     </p>
     {% formfield player.comp4a %}
     {% formfield player.comp4b %}
     <p>
-        <b>Question {% if treatment == "skills" %}5{% else %}5{% endif %}.</b>
-        For this question, you can use the calculator on your device.
-        Suppose you are assigned to Type B. Further, suppose the 3 other group members allocate 90 tokens
+        <b>Question {% if treatment == "skills" %}5{% else %}4{% endif %}.</b>
+        Suppose you are assigned to Type-B. Further, suppose the 3 other group members allocate 90 tokens
         in total to the group account.
     </p>
     {% formfield player.comp5a %}
