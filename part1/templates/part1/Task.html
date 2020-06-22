@@ -15,7 +15,7 @@
 
 <p>
     Please use the code provided to translate the random strings into the corresponding numerical code. You have 3
-    minutes to complete as many encodings as you choose. For every correct encoding you submit, you will earn 10 tokens.
+    minutes to complete as many encodings as you choose. For every correct encoding you submit, you will earn 30 tokens.
 </p>
 <img src="{% static 'img/table.jpg' %}" id = "letter-table"/>
 <br>
@@ -30,25 +30,5 @@
 </table>
 
 {% next_button %}
-<br>
-<br>
-<table>
-    <tr>
-        <td><b>Wage:</b></td>
-        <td>{{wage}}</td>
-    </tr>
-    <tr>
-        <td><b>Correct:</b></td>
-        <td>{{correct}}</td>
-    </tr>
-    <tr>
-        <td><b>Incorrect:</b></td>
-        <td>{{incorrect}}</td>
-    </tr>
-    <tr>
-        <td><b>Earnings:</b></td>
-        <td>{{earnings}}</td>
-    </tr>
-</table>
 
 {% endblock %}

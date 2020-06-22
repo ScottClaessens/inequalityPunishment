@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Part 2 - Practice Round
+{% endblock %}
+
+{% block content %}
+
+<p><b><u>Practice round (does not count for bonus payment)</u></b></p>
+
+<p>
+    <b>In this practice round</b>, you are playing with three <b>computerised</b> group members.
+</p>
+<p>
+    You have a token endowment of 50 tokens.
+</p>
+
+{% formfields %}
+
+<p>
+    The tokens you keep in the private account will be subject to the fine rate chosen by the majority.
+</p>
+
+{% next_button %}
+
+{% endblock %}

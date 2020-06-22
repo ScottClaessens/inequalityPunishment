@@ -21,7 +21,7 @@ class Constants(BaseConstants):
     name_in_url = 'part1'
     players_per_group = 4
     num_rounds = 60
-    wage = c(10)
+    wage = c(30)
 
     table = {
         'A': 8,  'B': 12, 'C': 14, 'E': 9,  'F': 6,  'G': 24, 'H': 22, 'I': 7,  'J': 5,  'K': 11, 'L': 3,
@@ -39,6 +39,11 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    takePart = models.BooleanField(label="Do you agree to participate in this study?",
+                                   choices=[
+                                       [True, 'I agree to take part. Take me to the study.'],
+                                       [False, 'I do not agree to take part in this study. Take me back to Prolific.']
+                                   ], widget=widgets.RadioSelect)
     input1 = models.IntegerField(min=1, max=26)
     input2 = models.IntegerField(min=1, max=26)
     input3 = models.IntegerField(min=1, max=26)

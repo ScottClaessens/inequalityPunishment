@@ -1,0 +1,45 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Part 3 - Demographic survey
+{% endblock %}
+
+{% block content %}
+
+<p>
+    <b>Please complete a few demographic questions before completing the study.</b>
+</p>
+
+{% formfield player.gender %}
+{% formfield player.age %}
+{% formfield player.ethnicity %}
+{% formfield player.nationality %}
+{% formfield player.employment %}
+{% formfield player.married %}
+{% formfield player.education %}
+{% formfield player.income %}
+{% formfield player.fair %}
+
+<br>
+<p>
+    <b>Please also state the extent to which you agree or disagree with the following statements.</b>
+</p>
+
+{% formfield player.sdo1 %}
+{% formfield player.sdo2 %}
+{% formfield player.sdo3 %}
+{% formfield player.sdo4 %}
+{% formfield player.sdo5 %}
+{% formfield player.sdo6 %}
+{% formfield player.rwa1 %}
+{% formfield player.rwa2 %}
+{% formfield player.rwa3 %}
+{% formfield player.rwa4 %}
+{% formfield player.rwa5 %}
+{% formfield player.rwa6 %}
+
+<br>
+{% next_button %}
+
+{% endblock %}

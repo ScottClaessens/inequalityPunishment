@@ -1,0 +1,35 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Part 2 - Round {{player.round_number}} - Results
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Fine rate voted by majority: {{group.fine_rate}}
+</p>
+<p>
+    Tokens in private account: {{kept}}
+</p>
+<p>
+    Total tokens in group account: {{group.group_account}}
+</p>
+<p>
+    Tokens you got back from the group account: {{back}}
+</p>
+<p>
+    Fine = {{group.fine_rate}} of {{kept}} = {{fined}}
+</p>
+<p>
+    Fixed fee = {{fixed}}
+</p>
+<p>
+    Earnings for this round = {{kept}} (kept in private account) + {{back}} (from group account) - {{fined}} (fined) -
+    {{fixed}} (fixed fee) = <b>{{earn}}</b>
+</p>
+
+{% next_button %}
+
+{% endblock %}

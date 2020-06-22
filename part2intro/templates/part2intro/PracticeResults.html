@@ -1,0 +1,35 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Part 2 - Practice Round Results
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Fine rate voted by majority: 30%
+</p>
+<p>
+    Tokens in private account: {{kept}}
+</p>
+<p>
+    Total tokens in group account: {{total}}
+</p>
+<p>
+    Tokens you got back from the group account: {{back}}
+</p>
+<p>
+    Fine = 30% of {{kept}} = {{fined}}
+</p>
+<p>
+    Fixed fee = 4 tokens
+</p>
+<p>
+    <i>Earnings for this round = {{kept}} (kept in private account) + {{back}} (from group account) - {{fined}} (fined) -
+        4 tokens (fixed fee) = <b>{{earn}}</b></i>
+</p>
+
+{% next_button %}
+
+{% endblock %}

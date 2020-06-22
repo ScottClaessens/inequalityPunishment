@@ -8,21 +8,32 @@
 {% block content %}
 
 <p>
-    Welcome! You are now taking part in a decision-making experiment. You will earn £6.50 for completing the experiment.
-    You will also receive additional bonus earnings in the experiment, £5 on average. The bonus will depend on your
-    decisions and the decisions of other participants. Your bonus earnings will be calculated in tokens, and will
-    convert to Pounds at the following rate:
+    Welcome to this study, funded by the University of Auckland, New Zealand.
 </p>
 <p>
-    <b>300 tokens = £1</b>
+    The entire study should take no longer than <b>45 minutes</b>. Please make sure that you have that time at your disposal.
 </p>
 <p>
-    During the experiment, please do not communicate with others.
+    The study is designed to understand how people make allocation decisions in a group setting. You must be at least 18 years old
+    to participate in this study. All you have to do during the study is enter numbers using your computer keyboard.
 </p>
+<ul>
+    <li>Your responses will be kept anonymous and confidential.</li>
+    <li>You will be paid a <b>guaranteed £5.00</b> for your participation upon completing the study. Depending on your decisions
+    and the decisions made by others in the study, you will also earn an additional <b>bonus amount</b>. On average, this
+    bonus amount will add up to about <b>another £5.00</b> for a total of about <b>£10.00</b>.</li>
+    <li>Your participation is completely voluntary and you can withdraw at any time during the session. However, if you withdraw,
+    you will not receive any payments from the study and will reduce the payments of other study participants.</li>
+    <li>If you have any questions about this study, then you can email Principal Investigator Ananish Chaudhuri
+    (a.chaudhuri@auckland.ac.nz).</li>
+</ul>
 <p>
-    This experiment consists of <b>two parts</b>. The instructions for Part 1 are given on the next screen. You will
-    receive additional instructions for Part 2 after Part 1 is over.
+    <b>
+        Please participate in the study only if you have 45 minutes available, and you intend to complete the entire study immediately.
+    </b>
 </p>
+
+{% formfield player.takePart %}
 
 {% next_button %}
 

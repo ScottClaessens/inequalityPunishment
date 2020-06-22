@@ -1,0 +1,48 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Part 2 - Endowments
+{% endblock %}
+
+{% block content %}
+
+<p>You have successfully been matched with three other real participants.</p>
+
+{% if group.treatment == "equality" %}
+
+<p>The token endowment for all participants is the same.</p>
+<p>In each round, each group member will have an endowment of 50 tokens.</p>
+
+{% elif group.treatment == "skill" %}
+
+<p>The token endowment for all participants is not the same.</p>
+<p>The token endowment has been determined by the number of words correctly encoded by group members in Part 1.</p>
+<p>In each round, the top two performers from Part 1 will each have 80 tokens.</p>
+<p>In each round, the bottom two performers from Part 1 will each have 20 tokens.</p>
+
+{% elif group.treatment == "luck" %}
+
+<p>The token endowment for all participants is not the same.</p>
+<p>The token endowment has been determined on the basis of random chance.</p>
+<p>In each round, two randomly chosen group members will each have 80 tokens.</p>
+<p>In each round, the other two group members will each have 20 tokens.</p>
+
+{% elif group.treatment == "uncertain" %}
+
+<p>The token endowment for all participants is not the same.</p>
+<p>The token endowment has been determined in the following way.</p>
+<p>There is a 50% chance that the token endowment has been determined by the number of words correctly encoded by group
+    members in Part 1. In each round, the top two performers from Part 1 will each have 80 tokens and the bottom two
+    performers from Part 1 will each have 20 tokens.</p>
+<p>There is a 50% chance that the token endowment has been determined on the basis of random chance. In each round,
+    two randomly chosen group members will each have 80 tokens and the other two group members will each have 20 tokens.</p>
+<p>You will not know which of the above rules has been used to determine token endowments in your group.</p>
+
+{% endif %}
+
+<p>Your token endowment for each round of the game is: <b>{{endowment}}</b></p>
+
+{% next_button %}
+
+{% endblock %}

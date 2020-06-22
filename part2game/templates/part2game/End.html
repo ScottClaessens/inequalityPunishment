@@ -1,0 +1,17 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Part 2 - End of Game
+{% endblock %}
+
+{% block content %}
+
+<p>This is the end of the game.</p>
+<p>You encoded {{encoded}} words correctly in Part 1 and earned {{part1earn}} in Part 1.</p>
+<p>You earned {{part2earn}} in Part 2.</p>
+<p>This means you will receive <b>{{pounds}}</b> as the bonus payment.</p>
+
+{% next_button %}
+
+{% endblock %}

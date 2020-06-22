@@ -6,8 +6,25 @@ import random
 
 
 class Welcome(Page):
+    form_model = 'player'
+    form_fields = ['takePart']
+
     def is_displayed(self):
         return self.round_number == 1
+
+    # timeout_seconds = 90
+
+
+class ReturnToProlific(Page):
+    def is_displayed(self):
+        return self.round_number == 1 and self.player.takePart is False
+
+
+class StudyOverview(Page):
+    def is_displayed(self):
+        return self.round_number == 1
+
+    # timeout_seconds = 90
 
 
 class IntroPart1(Page):
@@ -28,6 +45,8 @@ class IntroPart1(Page):
         self.participant.vars['part1_correct'] = 0
         self.participant.vars['part1_incorrect'] = 0
         self.participant.vars['part1_earnings'] = c(0)
+
+    # timeout_seconds = 60
 
 
 class Task(Page):
@@ -75,5 +94,7 @@ class Task(Page):
 
 
 page_sequence = [Welcome,
+                 ReturnToProlific,
+                 StudyOverview,
                  IntroPart1,
                  Task]

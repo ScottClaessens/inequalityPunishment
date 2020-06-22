@@ -1,0 +1,41 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Part 2 - Instructions
+{% endblock %}
+
+{% block content %}
+<p>
+    <b><u>Example</u></b>
+</p>
+<p>
+    Every group member is given a token endowment of 50 tokens.
+</p>
+<p>
+    The fine rate chosen by the majority is 30%
+</p>
+<p>
+    You keep 10 tokens in your private account and allocate 40 tokens to the group account. The other three group members
+    allocate an additional 60 tokens to the group account, taking the total in the group account to 100 tokens. This is
+    doubled to 200 tokens and redistributed equally among the four group members. Each group member gets 50 tokens back
+    from the group account.
+</p>
+<p>
+    Your fine = 30% of the 10 tokens in your private account = 3 tokens
+</p>
+<p>
+    Fixed fee = 4 tokens
+</p>
+<p>
+    <i>Your earning in the round = 10 (kept in private account) + 50 (from group account) - 3 (fined) - 4 (fixed fee) =
+        <b>53 tokens</b>.</i>
+</p>
+<p>
+    After all four group members have made their allocation decisions in the round, you will be shown the total number of
+    tokens allocated to the group account, and your bonus payment for the round.
+</p>
+
+{% next_button %}
+
+{% endblock %}

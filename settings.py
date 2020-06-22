@@ -8,20 +8,34 @@ from os import environ
 SESSION_CONFIG_DEFAULTS = dict(
     # use_browser_bots=True,
     real_world_currency_per_point=(1/300),
-    participation_fee=2.50,
+    participation_fee=5.00,
     doc=""
 )
 
 SESSION_CONFIGS = [
     dict(
-       name='brockSkills',
-       display_name="Inequality and punishment (skills treatment)",
+       name='brockEquality',
+       display_name="Inequality and punishment (equality treatment)",
        num_demo_participants=4,
        app_sequence=[
            'part1',
-           'part2'
+           'part2intro',
+           'part2game',
+           'part3'
        ],
-       treatment='skills'
+       treatment='equality'
+    ),
+    dict(
+       name='brockSkill',
+       display_name="Inequality and punishment (skill treatment)",
+       num_demo_participants=4,
+       app_sequence=[
+           'part1',
+           'part2intro',
+           'part2game',
+           'part3'
+       ],
+       treatment='skill'
     ),
     dict(
        name='brockLuck',
@@ -29,7 +43,9 @@ SESSION_CONFIGS = [
        num_demo_participants=4,
        app_sequence=[
            'part1',
-           'part2'
+           'part2intro',
+           'part2game',
+           'part3'
        ],
        treatment='luck'
     ),
@@ -39,20 +55,24 @@ SESSION_CONFIGS = [
        num_demo_participants=4,
        app_sequence=[
            'part1',
-           'part2'
+           'part2intro',
+           'part2game',
+           'part3'
        ],
        treatment='uncertain'
     ),
     dict(
-       name='brockEquality',
-       display_name="Inequality and punishment (equality treatment)",
+       name='brockRandom',
+       display_name="Inequality and punishment (randomly-allocated treatment)",
        num_demo_participants=4,
        app_sequence=[
            'part1',
-           'part2'
+           'part2intro',
+           'part2game',
+           'part3'
        ],
-       treatment='equality'
-    )
+       treatment='random'
+    ),
 ]
 
 
