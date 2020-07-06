@@ -82,7 +82,20 @@ class End(Page):
         )
 
     def is_displayed(self):
-        return self.round_number == 10
+        return self.round_number == 10 and self.participant.vars['timeoutGroup'] is False
+
+
+class Dropout(Page):
+    def vars_for_template(self):
+        return dict(
+            encoded=self.participant.vars['part1_correct'],
+            part1earn=c(30) * self.participant.vars['part1_correct'],
+            part2earn=sum([p.payoff for p in self.player.in_all_rounds()]),
+            pounds=self.participant.payoff_plus_participation_fee
+        )
+
+    def is_displayed(self):
+        return self.round_number == 10 and self.participant.vars['timeoutGroup']
 
 
 page_sequence = [
@@ -91,5 +104,6 @@ page_sequence = [
     Decisions,
     ResultsWait,
     Results,
-    End
+    End,
+    Dropout
 ]
