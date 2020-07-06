@@ -52,8 +52,7 @@ class Player(BasePlayer):
                                    [3, 'Neither fair nor unfair'],
                                    [2, 'Somewhat unfair'],
                                    [1, 'Extremely unfair']
-                               ], widget=widgets.RadioSelectHorizontal,
-                               blank=True)
+                               ], widget=widgets.RadioSelectHorizontal)
 
     sdo1 = models.IntegerField(label="It is okay if some groups have more of a chance in life than others.",
                                choices=[
@@ -62,7 +61,7 @@ class Player(BasePlayer):
         [3, 'Neither agree nor disagree'],
         [2, 'Disagree'],
         [1, 'Strongly disagree']
-    ], widget=widgets.RadioSelectHorizontal, blank=True)
+    ], widget=widgets.RadioSelectHorizontal)
     sdo2 = models.IntegerField(label="Inferior groups should stay in their place.",
                                choices=[
         [5, 'Strongly agree'],
@@ -70,7 +69,7 @@ class Player(BasePlayer):
         [3, 'Neither agree nor disagree'],
         [2, 'Disagree'],
         [1, 'Strongly disagree']
-    ], widget=widgets.RadioSelectHorizontal, blank=True)
+    ], widget=widgets.RadioSelectHorizontal)
     sdo3 = models.IntegerField(label="To get ahead in life, it is sometimes okay to step on other groups.",
                                choices=[
         [5, 'Strongly agree'],
@@ -78,7 +77,7 @@ class Player(BasePlayer):
         [3, 'Neither agree nor disagree'],
         [2, 'Disagree'],
         [1, 'Strongly disagree']
-    ], widget=widgets.RadioSelectHorizontal, blank=True)
+    ], widget=widgets.RadioSelectHorizontal)
     sdo4 = models.IntegerField(label="We should have increased social equality.",
                                choices=[
         [5, 'Strongly agree'],
@@ -86,7 +85,7 @@ class Player(BasePlayer):
         [3, 'Neither agree nor disagree'],
         [2, 'Disagree'],
         [1, 'Strongly disagree']
-    ], widget=widgets.RadioSelectHorizontal, blank=True)
+    ], widget=widgets.RadioSelectHorizontal)
     sdo5 = models.IntegerField(label="It would be good if groups could be equal.",
                                choices=[
         [5, 'Strongly agree'],
@@ -94,7 +93,7 @@ class Player(BasePlayer):
         [3, 'Neither agree nor disagree'],
         [2, 'Disagree'],
         [1, 'Strongly disagree']
-    ], widget=widgets.RadioSelectHorizontal, blank=True)
+    ], widget=widgets.RadioSelectHorizontal)
     sdo6 = models.IntegerField(label="We should do what we can to equalise conditions for different groups.",
                                choices=[
         [5, 'Strongly agree'],
@@ -102,7 +101,7 @@ class Player(BasePlayer):
         [3, 'Neither agree nor disagree'],
         [2, 'Disagree'],
         [1, 'Strongly disagree']
-    ], widget=widgets.RadioSelectHorizontal, blank=True)
+    ], widget=widgets.RadioSelectHorizontal)
     rwa1 = models.IntegerField(label="It is always better to trust the judgment of the proper authorities in government "
                                      "and religion than to listen to the noisy rabble-rousers in our society who are "
                                      "trying to create doubt in people's minds.",
@@ -112,7 +111,7 @@ class Player(BasePlayer):
         [3, 'Neither agree nor disagree'],
         [2, 'Disagree'],
         [1, 'Strongly disagree']
-    ], widget=widgets.RadioSelectHorizontal, blank=True)
+    ], widget=widgets.RadioSelectHorizontal)
     rwa2 = models.IntegerField(label="It would be best for everyone if the proper authorities censored magazines so "
                                      "that people could not get their hands on trashy and disgusting material.",
                                choices=[
@@ -121,7 +120,7 @@ class Player(BasePlayer):
         [3, 'Neither agree nor disagree'],
         [2, 'Disagree'],
         [1, 'Strongly disagree']
-    ], widget=widgets.RadioSelectHorizontal, blank=True)
+    ], widget=widgets.RadioSelectHorizontal)
     rwa3 = models.IntegerField(label="Our country will be destroyed some day if we do not smash the perversions eating "
                                      "away at our moral fibre and traditional beliefs.",
                                choices=[
@@ -130,7 +129,7 @@ class Player(BasePlayer):
         [3, 'Neither agree nor disagree'],
         [2, 'Disagree'],
         [1, 'Strongly disagree']
-    ], widget=widgets.RadioSelectHorizontal, blank=True)
+    ], widget=widgets.RadioSelectHorizontal)
     rwa4 = models.IntegerField(label="People should pay less attention to The Bible and other traditional forms of "
                                      "religious guidance, and instead develop their own personal standards of what is "
                                      "moral and immoral",
@@ -140,7 +139,7 @@ class Player(BasePlayer):
         [3, 'Neither agree nor disagree'],
         [2, 'Disagree'],
         [1, 'Strongly disagree']
-    ], widget=widgets.RadioSelectHorizontal, blank=True)
+    ], widget=widgets.RadioSelectHorizontal)
     rwa5 = models.IntegerField(label="Atheists and others who have rebelled against established religions are no doubt "
                                      "every bit as good and virtuous as those who attend church regularly.",
                                choices=[
@@ -149,7 +148,7 @@ class Player(BasePlayer):
         [3, 'Neither agree nor disagree'],
         [2, 'Disagree'],
         [1, 'Strongly disagree']
-    ], widget=widgets.RadioSelectHorizontal, blank=True)
+    ], widget=widgets.RadioSelectHorizontal)
     rwa6 = models.IntegerField(label="Some of the best people in our country are those who are challenging our "
                                      "government, criticising religion, and ignoring the 'normal way' things are "
                                      "supposed to be done",
@@ -159,4 +158,4 @@ class Player(BasePlayer):
         [3, 'Neither agree nor disagree'],
         [2, 'Disagree'],
         [1, 'Strongly disagree']
-    ], widget=widgets.RadioSelectHorizontal, blank=True)
+    ], widget=widgets.RadioSelectHorizontal)
