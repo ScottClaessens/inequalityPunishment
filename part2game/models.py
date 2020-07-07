@@ -25,7 +25,8 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    pass
+    def creating_session(self):
+        self.session.vars['numGroupsFormed'] = 0
 
 
 class Group(BaseGroup):
@@ -66,9 +67,11 @@ class Group(BaseGroup):
                 p.participant.vars['part2_endowment'] = c(50)
 
     def set_treatment(self):
+        # increase number of groups formed by one
+        self.session.vars['numGroupsFormed'] += 1
         # set treatment
         if self.session.config['treatment'] == 'random':
-            treatment = random.choice(['equality', 'skill', 'luck', 'uncertain'])
+            treatment = ['equality', 'skill', 'luck', 'uncertain'][self.session.vars['numGroupsFormed'] % 4]
         else:
             treatment = self.session.config['treatment']
         self.treatment = treatment
@@ -114,7 +117,6 @@ class Group(BaseGroup):
             p.participant.vars['part2_finerate'] = fine_rate
 
     def set_payoffs(self):
-        self.set_fine_rate()
         group_account = 0
         for p in self.get_players():
             print('Player', p.id_in_group, 'allocated', p.allocation, 'of', p.participant.vars['part2_endowment'])
@@ -155,7 +157,8 @@ class Player(BasePlayer):
     allocation = models.CurrencyField(label="How many tokens would you like to allocate to the group account "
                                             "in this round?", min=c(0))
     fined = models.CurrencyField()
-    timeout = models.BooleanField()
+    timeoutVote = models.BooleanField()
+    timeoutAllocate = models.BooleanField()
 
     def allocation_max(self):
         return self.participant.vars['part2_endowment']

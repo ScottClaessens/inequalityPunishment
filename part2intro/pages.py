@@ -34,9 +34,15 @@ class Comprehension(Page):
     # timeout_seconds = 120
 
 
-class Practice(Page):
+class Practice1(Page):
     form_model = 'player'
-    form_fields = ['practiceVote', 'practiceAllocation']
+    form_fields = ['practiceVote']
+    # timeout_seconds = 60
+
+
+class Practice2(Page):
+    form_model = 'player'
+    form_fields = ['practiceAllocation']
     # timeout_seconds = 60
 
 
@@ -68,7 +74,8 @@ page_sequence = [
     Intro4,
     Intro5,
     Comprehension,
-    Practice,
+    Practice1,
+    Practice2,
     PracticeResults,
     StartGame
 ]

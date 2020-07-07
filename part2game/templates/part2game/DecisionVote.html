@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Part 2 - Round {{player.round_number}} - Vote
+{% endblock %}
+
+{% block content %}
+
+<p>
+    You have a token endowment of {{endowment}}.
+</p>
+
+{% formfields %}
+
+<p>
+    The tokens you keep in the private account will be subject to the fine rate chosen by the majority.
+</p>
+<p>
+    <i>NOTE: If you do not make your decisions within the time limit, then your vote will be set to 0% fine rate and your
+        entire token endowment will be allocated to the group account.</i>
+</p>
+
+{% next_button %}
+
+{% endblock %}

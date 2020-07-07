@@ -22,11 +22,11 @@ class Endowments(Page):
         return dict(endowment=self.participant.vars['part2_endowment'])
 
 
-class Decisions(Page):
+class DecisionVote(Page):
     timeout_seconds = 45
 
     form_model = 'player'
-    form_fields = ['vote', 'allocation']
+    form_fields = ['vote']
 
     def vars_for_template(self):
         return dict(endowment=self.participant.vars['part2_endowment'])
@@ -37,14 +37,43 @@ class Decisions(Page):
     def before_next_page(self):
         if self.timeout_happened:
             self.player.vote = '0%'
+            self.player.timeoutVote = True
+        else:
+            self.player.timeoutVote = False
+
+
+class VoteWait(WaitPage):
+    after_all_players_arrive = 'set_fine_rate'
+
+    def is_displayed(self):
+        return self.participant.vars['timeoutGroup'] is False
+
+
+class DecisionAllocate(Page):
+    timeout_seconds = 45
+
+    form_model = 'player'
+    form_fields = ['allocation']
+
+    def vars_for_template(self):
+        return dict(endowment=self.participant.vars['part2_endowment'])
+
+    def is_displayed(self):
+        return self.participant.vars['timeoutGroup'] is False
+
+    def before_next_page(self):
+        if self.timeout_happened:
             self.player.allocation = self.participant.vars['part2_endowment']
-            self.player.timeout = True
+            self.player.timeoutAllocate = True
+        else:
+            self.player.timeoutAllocate = False
+        if self.player.timeoutVote or self.player.timeoutAllocate:
             self.participant.vars['timeoutCount'] += 1
         else:
             self.participant.vars['timeoutCount'] = 0
 
 
-class ResultsWait(WaitPage):
+class AllocateWait(WaitPage):
     after_all_players_arrive = 'set_payoffs'
 
     def is_displayed(self):
@@ -93,8 +122,10 @@ class End(Page):
 page_sequence = [
     GroupingWait,
     Endowments,
-    Decisions,
-    ResultsWait,
+    DecisionVote,
+    VoteWait,
+    DecisionAllocate,
+    AllocateWait,
     Results,
     End
 ]

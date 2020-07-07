@@ -16,7 +16,7 @@ class PlayerBot(Bot):
                                         q2=c(280),
                                         q3=c(70),
                                         q4=c(72))
-        yield pages.Practice, dict(practiceVote=random.choice(['0%', '30%', '60%', '80%']),
-                                   practiceAllocation=random.randint(0, 50))
+        yield pages.Practice1, dict(practiceVote=random.choice(['0%', '30%', '60%', '80%']))
+        yield pages.Practice2, dict(practiceAllocation=random.randint(0, 50))
         yield pages.PracticeResults
         yield pages.StartGame

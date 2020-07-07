@@ -2,13 +2,13 @@
 {% load otree static %}
 
 {% block title %}
-    Part 2 - Round {{player.round_number}} - Decisions
+    Part 2 - Round {{player.round_number}} - Vote
 {% endblock %}
 
 {% block content %}
 
 <p>
-    You have a token endowment of {{endowment}}.
+    You have a token endowment of {{endowment}}. The majority of the group voted for a fine rate of <b>{{group.fine_rate}}</b>.
 </p>
 
 {% formfields %}

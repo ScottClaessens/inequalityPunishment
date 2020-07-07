@@ -45,15 +45,15 @@ class Player(BasePlayer):
 
     def q1_error_message(self, value):
         if value != c(140):
-            return 'The correct answer is 140 tokens.'
+            return 'The correct answer is 140 tokens: 20 (allocated by you) + 120 (allocated by others)'
 
     def q2_error_message(self, value):
         if value != c(280):
-            return 'The correct answer is 280 tokens.'
+            return 'The correct answer is 280 tokens: 140 (total allocated to group account) doubled'
 
     def q3_error_message(self, value):
         if value != c(70):
-            return 'The correct answer is 70 tokens.'
+            return 'The correct answer is 70 tokens: 280 (doubled amount in group account) divided between 4 players'
 
     def q4_error_message(self, value):
         if value != c(72):
