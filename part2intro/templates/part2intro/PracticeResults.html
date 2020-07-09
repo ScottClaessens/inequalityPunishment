@@ -7,24 +7,14 @@
 
 {% block content %}
 
-<p>
-    Fine rate voted by majority: 30%
-</p>
-<p>
-    Tokens in private account: {{kept}}
-</p>
-<p>
-    Total tokens in group account: {{total}}
-</p>
-<p>
-    Tokens you got back from the group account: {{back}}
-</p>
-<p>
-    Fine = 30% of {{kept}} = {{fined}}
-</p>
-<p>
-    Fixed fee = 4 tokens
-</p>
+<ul>
+    <li>Fine rate voted by majority: <b>30%</b></li>
+    <li>Tokens in private account: <b>{{kept}}</b></li>
+    <li>Total tokens in group account: <b>{{total}}</b></li>
+    <li>Tokens you got back from the group account: <b>{{back}}</b></li>
+    <li>Fine = 30% of {{kept}} = <b>{{fined}}</b></li>
+    <li>Fixed fee = <b>4 tokens</b></li>
+</ul>
 <p>
     <i>Earnings for this round = {{kept}} (kept in private account) + {{back}} (from group account) - {{fined}} (fined) -
         4 tokens (fixed fee) = <b>{{earn}}</b></i>
