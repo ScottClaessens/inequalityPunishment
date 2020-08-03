@@ -14,8 +14,8 @@ SESSION_CONFIG_DEFAULTS = dict(
 
 SESSION_CONFIGS = [
     dict(
-       name='brockEquality',
-       display_name="Inequality and punishment (equality treatment)",
+       name='Equality',
+       display_name="Equality treatment",
        num_demo_participants=4,
        app_sequence=[
            'part1',
@@ -27,8 +27,8 @@ SESSION_CONFIGS = [
        use_browser_bots=False
     ),
     dict(
-       name='brockSkill',
-       display_name="Inequality and punishment (skill treatment)",
+       name='Skill',
+       display_name="Skill treatment",
        num_demo_participants=4,
        app_sequence=[
            'part1',
@@ -40,8 +40,8 @@ SESSION_CONFIGS = [
        use_browser_bots=False
     ),
     dict(
-       name='brockLuck',
-       display_name="Inequality and punishment (luck treatment)",
+       name='Luck',
+       display_name="Luck treatment",
        num_demo_participants=4,
        app_sequence=[
            'part1',
@@ -53,8 +53,8 @@ SESSION_CONFIGS = [
        use_browser_bots=False
     ),
     dict(
-       name='brockUncertain',
-       display_name="Inequality and punishment (uncertain treatment)",
+       name='Uncertain',
+       display_name="Uncertain treatment",
        num_demo_participants=4,
        app_sequence=[
            'part1',
@@ -66,8 +66,8 @@ SESSION_CONFIGS = [
        use_browser_bots=False
     ),
     dict(
-       name='brockRandom',
-       display_name="Inequality and punishment (randomly-allocated treatment)",
+       name='Random',
+       display_name="Randomly-allocated treatment",
        num_demo_participants=4,
        app_sequence=[
            'part1',
