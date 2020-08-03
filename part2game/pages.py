@@ -13,7 +13,7 @@ class GroupingWait(WaitPage):
 
 
 class Endowments(Page):
-    timeout_seconds = 60
+    timeout_seconds = 180
 
     def is_displayed(self):
         return self.round_number == 1
@@ -23,7 +23,7 @@ class Endowments(Page):
 
 
 class DecisionVote(Page):
-    timeout_seconds = 45
+    timeout_seconds = 90
 
     form_model = 'player'
     form_fields = ['vote']
@@ -50,7 +50,7 @@ class VoteWait(WaitPage):
 
 
 class DecisionAllocate(Page):
-    timeout_seconds = 45
+    timeout_seconds = 90
 
     form_model = 'player'
     form_fields = ['allocation']
@@ -81,7 +81,7 @@ class AllocateWait(WaitPage):
 
 
 class Results(Page):
-    timeout_seconds = 45
+    timeout_seconds = 90
 
     def is_displayed(self):
         return self.participant.vars['timeoutGroup'] is False

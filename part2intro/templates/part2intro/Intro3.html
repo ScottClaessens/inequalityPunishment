@@ -11,12 +11,15 @@
     In each round, before making allocation decisions, participants will also choose a <b>fine rate</b>.
 </p>
 <ul>
-    <li>The fine rate applies to <b>any tokens <u>not</u> allocated to the group account</b>.</li>
+    <li>The fine rate applies to <b>any tokens kept in the private account</b>.</li>
     <li>All four members will vote for <b>one</b> of the following fine rates: <b>0%, 30%, 60%, or 80%</b>.</li>
-    <li>The fine rate that receives the most votes will be implemented for that round, with ties broken randomly.</li>
+    <li>The fine rate that receives at least two votes will be implemented for that round. If two fine rates each receive
+    two votes, one of those fine rates will be chosen randomly. If all fine rates each receive one vote, one of those fine
+    rates will be chosen randomly.</li>
     <li>If the implemented fine rate is 0%, there is no fine.</li>
     <li>If the implemented fine rate is 30%, 60%, or 80%, then each participant in your group will be fined for tokens that
-    they do not allocate to the group account, plus an additional fixed fee of 4 tokens.</li>
+    they kept in their private account, plus an additional fixed fee of 4 tokens. This additional fixed fee will apply to
+    each participant in the group, regardless of their contribution to the group account.</li>
 </ul>
 <p>
     <b><u>Example</u></b>
@@ -25,8 +28,8 @@
     The fine rate chosen by majority is 30%.
 </p>
 <p>
-    You keep 10 tokens in your private account. You will be fined 30% of 10 tokens (3 tokens), and will additionally pay
-    the fixed fee of 4 tokens.
+    You keep 10 tokens in your private account. You will be fined 30% of 10 tokens (3 tokens), and will pay
+    the additional fixed fee of 4 tokens.
 </p>
 
 {% next_button %}
