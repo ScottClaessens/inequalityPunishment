@@ -23,7 +23,8 @@ SESSION_CONFIGS = [
            'part2game',
            'part3'
        ],
-       treatment='equality'
+       treatment='equality',
+       use_browser_bots=False
     ),
     dict(
        name='brockSkill',
@@ -35,7 +36,8 @@ SESSION_CONFIGS = [
            'part2game',
            'part3'
        ],
-       treatment='skill'
+       treatment='skill',
+       use_browser_bots=False
     ),
     dict(
        name='brockLuck',
@@ -47,7 +49,8 @@ SESSION_CONFIGS = [
            'part2game',
            'part3'
        ],
-       treatment='luck'
+       treatment='luck',
+       use_browser_bots=False
     ),
     dict(
        name='brockUncertain',
@@ -59,7 +62,8 @@ SESSION_CONFIGS = [
            'part2game',
            'part3'
        ],
-       treatment='uncertain'
+       treatment='uncertain',
+       use_browser_bots=False
     ),
     dict(
        name='brockRandom',
@@ -71,7 +75,8 @@ SESSION_CONFIGS = [
            'part2game',
            'part3'
        ],
-       treatment='random'
+       treatment='random',
+       use_browser_bots=False
     ),
 ]
 
@@ -85,7 +90,12 @@ REAL_WORLD_CURRENCY_CODE = 'GBP'
 USE_POINTS = True
 POINTS_CUSTOM_NAME = 'tokens'
 
-ROOMS = []
+ROOMS = [
+    dict(
+        name="testing",
+        display_name="Testing"
+    )
+]
 
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable

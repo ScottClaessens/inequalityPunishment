@@ -13,7 +13,7 @@ class GroupingWait(WaitPage):
 
 
 class Endowments(Page):
-    timeout_seconds = 180
+    timeout_seconds = 120
 
     def is_displayed(self):
         return self.round_number == 1

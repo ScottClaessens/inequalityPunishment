@@ -57,5 +57,5 @@ class Player(BasePlayer):
 
     def q4_error_message(self, value):
         if value != c(72):
-            return 'The correct answer is 72 tokens: 30 (kept in private account) + 70 (from group account) ' \
-                   '- 24 (fined) - 4 (fixed fee)'
+            return 'The correct answer is 72 tokens: 70 from group account + (30 kept in private account ' \
+                   '- 24 fined - 4 additional fixed fee)'
