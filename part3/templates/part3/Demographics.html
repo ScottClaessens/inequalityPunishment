@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Part 3 - Exit survey
+{% endblock %}
+
+{% block content %}
+
+<p>
+    <b>Please complete a few demographic questions before completing the study.</b>
+</p>
+
+{% formfield player.gender %}
+{% formfield player.age %}
+{% formfield player.ethnicity %}
+{% formfield player.employed %}
+{% formfield player.married %}
+{% formfield player.education %}
+{% formfield player.income %}
+{% formfield player.fair %}
+
+{% next_button %}
+
+{% endblock %}

@@ -13,7 +13,7 @@ from otree.api import (
 author = 'Scott Claessens'
 
 doc = """
-Inequality and punishment (Part 3)
+Part 3
 """
 
 
@@ -32,19 +32,44 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    gender = models.IntegerField(label="What is your gender?", choices=[[1, 'Male'], [2, 'Female'], [3, 'Other']],
-                                 widget=widgets.RadioSelect, blank=True)
+    gender = models.StringField(label="What is your gender?", choices=[
+        ["Male", "Male"], ["Female", "Female"], ["Other", "Other"]
+    ], widget=widgets.RadioSelect, blank=True)
     age = models.IntegerField(label="What is your age?", min=18, max=100, blank=True)
-    ethnicity = models.StringField(label="What is your ethnicity?", blank=True)
-    nationality = models.StringField(label="What is your nationality?", blank=True)
-    employment = models.IntegerField(label="Are you currently employed?", choices=[[0, 'No'], [1, 'Yes']],
-                                     widget=widgets.RadioSelect, blank=True)
-    married = models.IntegerField(label="Are you currently married?", choices=[[0, 'No'], [1, 'Yes']],
+    ethnicity = models.StringField(label="What is your ethnicity?",
+                                   choices=[
+                                        ["White", "White"],
+                                        ["Black", "Black or African American"],
+                                        ["Asian", "Asian"],
+                                        ["AmeIndian", "American Indian or Alaska Native"],
+                                        ["Pacific", "Native Hawaiian or Pacific Islander"],
+                                        ["Other", "Other"]
+                                   ], widget=widgets.RadioSelect, blank=True)
+    employed = models.StringField(label="Are you currently employed?", choices=[['No', 'No'], ['Yes', 'Yes']],
                                   widget=widgets.RadioSelect, blank=True)
-    education = models.StringField(label="What is your highest achieved level of education?",
-                                   blank=True)
-    income = models.StringField(label="Please estimate your annual household income.", blank=True)
-
+    married = models.StringField(label="Are you currently married?", choices=[['No', 'No'], ['Yes', 'Yes']],
+                                 widget=widgets.RadioSelect, blank=True)
+    education = models.IntegerField(label="What is the highest level of school you have completed or the highest degree "
+                                          "you have received?",
+                                    choices=[
+                                        [1, "Less than high school degree"],
+                                        [2, "High school graduate (high school diploma or equivalent including GED)"],
+                                        [3, "Some college but no degree"],
+                                        [4, "Associate degree in college (2-year)"],
+                                        [5, "Bachelor's degree in college (4-year)"],
+                                        [6, "Master's degree"],
+                                        [7, "Doctoral degree"],
+                                        [8, "Professional degree (JD, MD)"]
+                                    ], widget=widgets.RadioSelect, blank=True)
+    income = models.IntegerField(label="Please estimate your annual household income.",
+                                    choices=[
+                                        [1, "Less than $20,000"],
+                                        [2, "$20,000 to $34,999"],
+                                        [3, "$35,000 to $49,999"],
+                                        [4, "$50,000 to $74,999"],
+                                        [5, "$75,000 to $100,000"],
+                                        [6, "Over $100,000"]
+                                    ], widget=widgets.RadioSelect, blank=True)
     fair = models.IntegerField(label="How fair do you think the distribution of endowments was in your group?",
                                choices=[
                                    [5, 'Extremely fair'],

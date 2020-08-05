@@ -13,7 +13,7 @@ from otree.api import (
 author = 'Scott Claessens'
 
 doc = """
-Inequality and punishment (Part 2 Intro)
+Part 2 (Intro)
 """
 
 

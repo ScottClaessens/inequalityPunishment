@@ -5,6 +5,14 @@ import time
 import random
 
 
+class ProlificID(Page):
+    form_model = 'player'
+    form_fields = ['prolificID']
+
+    def is_displayed(self):
+        return self.round_number == 1
+
+
 class Welcome(Page):
     form_model = 'player'
     form_fields = ['takePart']
@@ -93,7 +101,8 @@ class Task(Page):
         self.participant.vars['part1_letter3'] = random.choice(list(Constants.table.keys()))
 
 
-page_sequence = [Welcome,
+page_sequence = [ProlificID,
+                 Welcome,
                  ReturnToProlific,
                  StudyOverview,
                  IntroPart1,

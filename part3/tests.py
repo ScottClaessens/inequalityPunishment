@@ -7,16 +7,17 @@ from otree.api import Submission
 
 class PlayerBot(Bot):
     def play_round(self):
-        yield pages.Survey, dict(
-            gender=1,
+        yield pages.Demographics, dict(
+            gender="Male",
             age=26,
             ethnicity='White',
-            nationality='British',
-            employment=1,
-            married=1,
-            education='PhD',
-            income='$50,000',
-            fair=3,
+            employed="Yes",
+            married="Yes",
+            education=6,
+            income=2,
+            fair=3
+        )
+        yield pages.Survey, dict(
             sdo1=3,
             sdo2=3,
             sdo3=3,

@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Please enter your Prolific ID
+{% endblock %}
+
+{% block content %}
+
+{% formfield player.prolificID %}
+
+{% next_button %}
+
+{% endblock %}

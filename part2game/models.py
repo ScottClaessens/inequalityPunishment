@@ -14,7 +14,7 @@ from collections import Counter
 author = 'Scott Claessens'
 
 doc = """
-Inequality and punishment (Part 2 Game)
+Part 2 (Game)
 """
 
 

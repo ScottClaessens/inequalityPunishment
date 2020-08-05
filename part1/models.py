@@ -13,7 +13,7 @@ from otree.api import (
 author = 'Scott Claessens'
 
 doc = """
-Inequality and punishment (Part 1)
+Part 1
 """
 
 
@@ -39,6 +39,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
+    prolificID = models.StringField(label="Please enter your Prolific ID for payment purposes.")
     takePart = models.BooleanField(label="Do you agree to participate in this study?",
                                    choices=[
                                        [True, 'I agree to take part. Take me to the study.'],
