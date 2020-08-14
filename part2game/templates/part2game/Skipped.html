@@ -2,21 +2,13 @@
 {% load otree static %}
 
 {% block title %}
-    Part 2 - {% if timeout %}Kicked Out of Game!{% else %}End of Game{% endif %}
+    Part 2 - Skipped Game
 {% endblock %}
 
 {% block content %}
 
-<p>
-    {% if timeout %}
-        Unfortunately, you were kicked out of the game because one or more of the participants in your group were
-        responding too slowly. We saved your earnings up to the point where you were kicked out of the game.
-    {% else %}
-        This is the end of the game.
-    {% endif %}
-</p>
+<p>We are sorry that we were not able to find enough people to match you with. Thank you for your patience.</p>
 <p>You encoded {{encoded}} words correctly in Part 1 and earned {{part1earn}} in Part 1.</p>
-<p>You earned {{part2earn}} in Part 2.</p>
 <p>You also earned {{ waitEarn }} for waiting to be matched.</p>
 <p>
     This means you will receive <b>{{bonus}}</b> as the bonus payment in this study,

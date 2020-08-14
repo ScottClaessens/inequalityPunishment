@@ -20,8 +20,6 @@ class Welcome(Page):
     def is_displayed(self):
         return self.round_number == 1
 
-    # timeout_seconds = 90
-
 
 class ReturnToProlific(Page):
     def is_displayed(self):
@@ -31,8 +29,6 @@ class ReturnToProlific(Page):
 class StudyOverview(Page):
     def is_displayed(self):
         return self.round_number == 1
-
-    # timeout_seconds = 90
 
 
 class IntroPart1(Page):
@@ -53,8 +49,6 @@ class IntroPart1(Page):
         self.participant.vars['part1_correct'] = 0
         self.participant.vars['part1_incorrect'] = 0
         self.participant.vars['part1_earnings'] = c(0)
-
-    # timeout_seconds = 60
 
 
 class Task(Page):
@@ -99,6 +93,12 @@ class Task(Page):
         self.participant.vars['part1_letter2'] = random.choice(list(Constants.table.keys()))
         random.seed((self.round_number * 5) + 2)
         self.participant.vars['part1_letter3'] = random.choice(list(Constants.table.keys()))
+        # record vars once timed out
+        if self.timeout_happened or self.round_number == Constants.num_rounds:
+            self.player.in_round(Constants.num_rounds).totalNumAttempted = \
+                self.participant.vars['part1_correct'] + \
+                self.participant.vars['part1_incorrect']
+            self.player.in_round(Constants.num_rounds).totalNumCorrect = self.participant.vars['part1_correct']
 
 
 page_sequence = [ProlificID,

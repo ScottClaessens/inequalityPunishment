@@ -1,49 +1,42 @@
 from otree.api import Currency as c, currency_range
 from ._builtin import Page, WaitPage
 from .models import Constants
+import time
 
 
 class Intro1(Page):
     pass
-    # timeout_seconds = 60
 
 
 class Intro2(Page):
     pass
-    # timeout_seconds = 60
 
 
 class Intro3(Page):
     pass
-    # timeout_seconds = 60
 
 
 class Intro4(Page):
     pass
-    # timeout_seconds = 60
 
 
 class Intro5(Page):
     pass
-    # timeout_seconds = 90
 
 
 class Comprehension(Page):
     form_model = 'player'
     form_fields = ['q1', 'q2', 'q3', 'q4']
-    # timeout_seconds = 120
 
 
 class Practice1(Page):
     form_model = 'player'
     form_fields = ['practiceVote']
-    # timeout_seconds = 60
 
 
 class Practice2(Page):
     form_model = 'player'
     form_fields = ['practiceAllocation']
-    # timeout_seconds = 60
 
 
 class PracticeResults(Page):
@@ -59,12 +52,11 @@ class PracticeResults(Page):
             fined=fined,
             earn=earn
         )
-    # timeout_seconds = 60
 
 
 class StartGame(Page):
-    pass
-    # timeout_seconds = 60
+    def before_next_page(self):
+        self.participant.vars['waitStartTime'] = time.time()
 
 
 page_sequence = [

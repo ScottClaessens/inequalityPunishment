@@ -9,7 +9,6 @@ from otree.api import (
     currency_range,
 )
 
-
 author = 'Scott Claessens'
 
 doc = """
@@ -48,4 +47,6 @@ class Player(BasePlayer):
     input1 = models.IntegerField(min=1, max=26)
     input2 = models.IntegerField(min=1, max=26)
     input3 = models.IntegerField(min=1, max=26)
+    totalNumAttempted = models.IntegerField()
+    totalNumCorrect = models.IntegerField()
 

@@ -9,6 +9,7 @@ from otree.api import (
     currency_range,
 )
 import random
+import time
 from collections import Counter
 
 author = 'Scott Claessens'
@@ -27,6 +28,8 @@ class Constants(BaseConstants):
 class Subsession(BaseSubsession):
     def creating_session(self):
         self.session.vars['numGroupsFormed'] = 0
+        for p in self.get_players():
+            p.participant.vars['timeoutGroup'] = False
 
 
 class Group(BaseGroup):
@@ -51,7 +54,6 @@ class Group(BaseGroup):
             self.get_player_by_id(x[1]).participant.vars['part2_endowment'] = c(80)
             self.get_player_by_id(x[2]).participant.vars['part2_endowment'] = c(20)
             self.get_player_by_id(x[3]).participant.vars['part2_endowment'] = c(20)
-
         # get endowments based on treatment
         if self.treatment == 'skill':
             skill()
@@ -65,23 +67,42 @@ class Group(BaseGroup):
         elif self.treatment == 'equality':
             for p in self.get_players():
                 p.participant.vars['part2_endowment'] = c(50)
+        # record endowment
+        for p in self.get_players():
+            p.endowment = p.participant.vars["part2_endowment"]
 
     def set_treatment(self):
-        # increase number of groups formed by one
-        self.session.vars['numGroupsFormed'] += 1
-        # set treatment
-        if self.session.config['treatment'] == 'random':
-            treatment = ['equality', 'skill', 'luck', 'uncertain'][self.session.vars['numGroupsFormed'] % 4]
-        else:
-            treatment = self.session.config['treatment']
-        self.treatment = treatment
-        print('treatment =', treatment)
-        # set endowments from treatment
-        self.set_endowments()
-        # set timeout counter and group timeout
+        # record time spent waiting
         for p in self.get_players():
-            p.participant.vars['timeoutCount'] = 0
-            p.participant.vars['timeoutGroup'] = False
+            t = int(time.time() - p.participant.vars['waitStartTime'])
+            if t > 600:
+                t = 600
+            p.participant.vars["secsSpentWaiting"] = t
+            p.secsSpentWaiting = t
+            p.participant.vars["waitEarn"] = c((p.participant.vars["secsSpentWaiting"] / 60) *  # num of seconds *
+                          (0.05 / self.session.config['real_world_currency_per_point']))        # £0.05 = 12.5 tokens
+            p.payoff += p.participant.vars["waitEarn"]
+        # if any player in group skipped game due to long wait times
+        if sum(p.participant.vars.get('go_to_the_end', False) for p in self.get_players()) > 0:
+            self.skipped_whole_game = True
+        # if all players stayed and got successfully matched
+        else:
+            self.skipped_whole_game = False
+            # increase number of groups formed by one
+            self.session.vars['numGroupsFormed'] += 1
+            # set treatment
+            if self.session.config['treatment'] == 'random':
+                treatment = ['equality', 'skill', 'luck', 'uncertain'][self.session.vars['numGroupsFormed'] % 4]
+            else:
+                treatment = self.session.config['treatment']
+            self.treatment = treatment
+            print('treatment =', treatment)
+            # set endowments from treatment
+            self.set_endowments()
+            # set timeout counter and group timeout
+            for p in self.get_players():
+                p.participant.vars['timeoutCount'] = 0
+                p.participant.vars['timeoutGroup'] = False
 
     def set_fine_rate(self):
         # get rates the group chose
@@ -149,9 +170,11 @@ class Group(BaseGroup):
     group_account = models.CurrencyField()
     fine_rate = models.StringField()
     group_timeout = models.BooleanField()
+    skipped_whole_game = models.BooleanField()
 
 
 class Player(BasePlayer):
+    endowment = models.CurrencyField()
     vote = models.StringField(label="Which fine rate do you vote for in this round?",
                                choices=['0%', '30%', '60%', '80%'])
     allocation = models.CurrencyField(label="How many tokens would you like to allocate to the group account "
@@ -159,6 +182,7 @@ class Player(BasePlayer):
     fined = models.CurrencyField()
     timeoutVote = models.BooleanField()
     timeoutAllocate = models.BooleanField()
+    secsSpentWaiting = models.IntegerField()
 
     def allocation_max(self):
         return self.participant.vars['part2_endowment']

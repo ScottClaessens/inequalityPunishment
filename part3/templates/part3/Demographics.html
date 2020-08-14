@@ -8,7 +8,10 @@
 {% block content %}
 
 <p>
-    <b>Please complete a few demographic questions before completing the study.</b>
+    <b>
+        Before completing the study, please answer a few demographic questions and a question about the game.
+        You do not have to answer the demographic questions if you would prefer not to.
+    </b>
 </p>
 
 {% formfield player.gender %}
@@ -16,6 +19,7 @@
 {% formfield player.ethnicity %}
 {% formfield player.employed %}
 {% formfield player.married %}
+{% formfield player.religious %}
 {% formfield player.education %}
 {% formfield player.income %}
 {% formfield player.fair %}

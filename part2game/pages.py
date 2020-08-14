@@ -1,18 +1,22 @@
 from otree.api import Currency as c, currency_range
 from ._builtin import Page, WaitPage
 from .models import Constants
+from leavable_wait_page.pages import LeavableWaitPage, SkippablePage
 
 
-class GroupingWait(WaitPage):
+class GroupingWait(LeavableWaitPage):
     def is_displayed(self):
         return self.round_number == 1
 
+    def after_all_players_arrive(self):
+        self.group.set_treatment()
+
     group_by_arrival_time = True
-    after_all_players_arrive = 'set_treatment'
-    template_name = 'part2game/GroupWait.html'
+    allow_leaving_after = (60 * 10)
+    # template_name = 'part2game/GroupWait.html'
 
 
-class Endowments(Page):
+class Endowments(SkippablePage):
     timeout_seconds = 120
 
     def is_displayed(self):
@@ -22,7 +26,7 @@ class Endowments(Page):
         return dict(endowment=self.participant.vars['part2_endowment'])
 
 
-class DecisionVote(Page):
+class DecisionVote(SkippablePage):
     timeout_seconds = 90
 
     form_model = 'player'
@@ -46,10 +50,10 @@ class VoteWait(WaitPage):
     after_all_players_arrive = 'set_fine_rate'
 
     def is_displayed(self):
-        return self.participant.vars['timeoutGroup'] is False
+        return self.participant.vars['timeoutGroup'] is False and not self.participant.vars.get('go_to_the_end', False)
 
 
-class DecisionAllocate(Page):
+class DecisionAllocate(SkippablePage):
     timeout_seconds = 90
 
     form_model = 'player'
@@ -77,10 +81,10 @@ class AllocateWait(WaitPage):
     after_all_players_arrive = 'set_payoffs'
 
     def is_displayed(self):
-        return self.participant.vars['timeoutGroup'] is False
+        return self.participant.vars['timeoutGroup'] is False and not self.participant.vars.get('go_to_the_end', False)
 
 
-class Results(Page):
+class Results(SkippablePage):
     timeout_seconds = 90
 
     def is_displayed(self):
@@ -101,22 +105,41 @@ class Results(Page):
         )
 
 
-class End(Page):
+class End(SkippablePage):
     def vars_for_template(self):
         part1earn = c(30) * self.participant.vars['part1_correct']
-        part2earn = sum([p.payoff for p in self.player.in_all_rounds()])
-        bonus = part1earn + part2earn
+        waitEarn = self.participant.vars['waitEarn']
+        part2earn = sum([p.payoff for p in self.player.in_all_rounds()]) - waitEarn
+        bonus = part1earn + waitEarn + part2earn
         return dict(
             timeout=self.participant.vars['timeoutGroup'],
             encoded=self.participant.vars['part1_correct'],
             part1earn=part1earn,
             part2earn=part2earn,
+            waitEarn=waitEarn.to_real_world_currency(self.session),
             bonus=bonus.to_real_world_currency(self.session),
             total=self.participant.payoff_plus_participation_fee()
         )
 
     def is_displayed(self):
         return self.round_number == 10
+
+
+class Skipped(Page):
+    def is_displayed(self):
+        return self.round_number == 10 and self.participant.vars.get('go_to_the_end', False)
+
+    def vars_for_template(self):
+        part1earn = c(30) * self.participant.vars['part1_correct']
+        waitEarn = self.participant.vars['waitEarn']
+        bonus = part1earn + waitEarn
+        return dict(
+            encoded=self.participant.vars['part1_correct'],
+            part1earn=part1earn,
+            waitEarn=waitEarn.to_real_world_currency(self.session),
+            bonus=bonus.to_real_world_currency(self.session),
+            total=self.participant.payoff_plus_participation_fee()
+        )
 
 
 page_sequence = [
@@ -127,5 +150,6 @@ page_sequence = [
     DecisionAllocate,
     AllocateWait,
     Results,
-    End
+    End,
+    Skipped
 ]
