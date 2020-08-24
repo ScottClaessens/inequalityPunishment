@@ -1,10 +1,9 @@
 from otree.api import Currency as c, currency_range
 from ._builtin import Page, WaitPage
 from .models import Constants
-from leavable_wait_page.pages import LeavableWaitPage, SkippablePage
 
 
-class GroupingWait(LeavableWaitPage):
+class GroupingWait(WaitPage):
     def is_displayed(self):
         return self.round_number == 1
 
@@ -13,20 +12,20 @@ class GroupingWait(LeavableWaitPage):
 
     group_by_arrival_time = True
     allow_leaving_after = (60 * 10)
-    # template_name = 'part2game/GroupWait.html'
+    template_name = 'part2game/GroupWait.html'
 
 
-class Endowments(SkippablePage):
+class Endowments(Page):
     timeout_seconds = 120
 
     def is_displayed(self):
-        return self.round_number == 1
+        return self.round_number == 1 and self.participant.vars['skippedGame'] is False
 
     def vars_for_template(self):
         return dict(endowment=self.participant.vars['part2_endowment'])
 
 
-class DecisionVote(SkippablePage):
+class DecisionVote(Page):
     timeout_seconds = 90
 
     form_model = 'player'
@@ -36,7 +35,7 @@ class DecisionVote(SkippablePage):
         return dict(endowment=self.participant.vars['part2_endowment'])
 
     def is_displayed(self):
-        return self.participant.vars['timeoutGroup'] is False
+        return self.participant.vars['timeoutGroup'] is False and self.participant.vars['skippedGame'] is False
 
     def before_next_page(self):
         if self.timeout_happened:
@@ -50,10 +49,12 @@ class VoteWait(WaitPage):
     after_all_players_arrive = 'set_fine_rate'
 
     def is_displayed(self):
-        return self.participant.vars['timeoutGroup'] is False and not self.participant.vars.get('go_to_the_end', False)
+        return self.participant.vars['timeoutGroup'] is False and self.participant.vars['skippedGame'] is False
+
+    template_name = 'part2game/Wait.html'
 
 
-class DecisionAllocate(SkippablePage):
+class DecisionAllocate(Page):
     timeout_seconds = 90
 
     form_model = 'player'
@@ -63,7 +64,7 @@ class DecisionAllocate(SkippablePage):
         return dict(endowment=self.participant.vars['part2_endowment'])
 
     def is_displayed(self):
-        return self.participant.vars['timeoutGroup'] is False
+        return self.participant.vars['timeoutGroup'] is False and self.participant.vars['skippedGame'] is False
 
     def before_next_page(self):
         if self.timeout_happened:
@@ -81,14 +82,16 @@ class AllocateWait(WaitPage):
     after_all_players_arrive = 'set_payoffs'
 
     def is_displayed(self):
-        return self.participant.vars['timeoutGroup'] is False and not self.participant.vars.get('go_to_the_end', False)
+        return self.participant.vars['timeoutGroup'] is False and self.participant.vars['skippedGame'] is False
+
+    template_name = 'part2game/Wait.html'
 
 
-class Results(SkippablePage):
+class Results(Page):
     timeout_seconds = 90
 
     def is_displayed(self):
-        return self.participant.vars['timeoutGroup'] is False
+        return self.participant.vars['timeoutGroup'] is False and self.participant.vars['skippedGame'] is False
 
     def vars_for_template(self):
         kept = self.participant.vars['part2_endowment'] - self.player.allocation
@@ -105,7 +108,7 @@ class Results(SkippablePage):
         )
 
 
-class End(SkippablePage):
+class End(Page):
     def vars_for_template(self):
         part1earn = c(30) * self.participant.vars['part1_correct']
         waitEarn = self.participant.vars['waitEarn']
@@ -122,12 +125,12 @@ class End(SkippablePage):
         )
 
     def is_displayed(self):
-        return self.round_number == 10
+        return self.round_number == 10 and self.participant.vars['skippedGame'] is False
 
 
 class Skipped(Page):
     def is_displayed(self):
-        return self.round_number == 10 and self.participant.vars.get('go_to_the_end', False)
+        return self.round_number == 10 and self.participant.vars['skippedGame'] is True
 
     def vars_for_template(self):
         part1earn = c(30) * self.participant.vars['part1_correct']

@@ -107,4 +107,3 @@ SECRET_KEY = '70^a32-h0rg)o65uxe_f(%&eteheah8pkv#4+o&dcexk4lqjfi'
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
 INSTALLED_APPS = ['otree']
-EXTENSION_APPS = ['leavable_wait_page']
