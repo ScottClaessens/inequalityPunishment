@@ -77,9 +77,9 @@ class Task(Page):
     def before_next_page(self):
         # did they get it right?
         if (
-                self.player.input1 == Constants.table[self.participant.vars['part1_letter1']] and
-                self.player.input2 == Constants.table[self.participant.vars['part1_letter2']] and
-                self.player.input3 == Constants.table[self.participant.vars['part1_letter3']]
+            self.player.input1 == Constants.table[self.participant.vars['part1_letter1']] and
+            self.player.input2 == Constants.table[self.participant.vars['part1_letter2']] and
+            self.player.input3 == Constants.table[self.participant.vars['part1_letter3']]
         ):
             self.participant.vars['part1_correct'] += 1
             self.participant.vars['part1_earnings'] += Constants.wage
@@ -93,12 +93,11 @@ class Task(Page):
         self.participant.vars['part1_letter2'] = random.choice(list(Constants.table.keys()))
         random.seed((self.round_number * 5) + 2)
         self.participant.vars['part1_letter3'] = random.choice(list(Constants.table.keys()))
-        # record vars once timed out
-        if self.timeout_happened or self.round_number == Constants.num_rounds:
-            self.player.in_round(Constants.num_rounds).totalNumAttempted = \
-                self.participant.vars['part1_correct'] + \
-                self.participant.vars['part1_incorrect']
-            self.player.in_round(Constants.num_rounds).totalNumCorrect = self.participant.vars['part1_correct']
+        # record vars
+        self.player.in_round(Constants.num_rounds).totalNumAttempted = \
+            self.participant.vars['part1_correct'] + \
+            self.participant.vars['part1_incorrect']
+        self.player.in_round(Constants.num_rounds).totalNumCorrect = self.participant.vars['part1_correct']
 
 
 page_sequence = [ProlificID,
