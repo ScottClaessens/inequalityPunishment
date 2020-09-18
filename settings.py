@@ -12,6 +12,7 @@ SESSION_CONFIG_DEFAULTS = dict(
     doc=""
 )
 
+
 SESSION_CONFIGS = [
     dict(
        name='Equality',
