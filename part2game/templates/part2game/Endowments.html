@@ -9,26 +9,26 @@
 
 <p>You have successfully been matched with three other real participants.</p>
 
-{% if group.treatment == "equality" %}
+{% if treatment == "equality" %}
 
 <p>The token endowment for all participants is the same.</p>
 <p>In each round, each group member will have an endowment of 50 tokens.</p>
 
-{% elif group.treatment == "skill" %}
+{% elif treatment == "skill" %}
 
 <p>The token endowment for all participants is not the same.</p>
 <p>The token endowment has been determined by the number of words correctly encoded by group members in Part 1.</p>
 <p>In each round, the top two performers from Part 1 will each have 80 tokens.</p>
 <p>In each round, the bottom two performers from Part 1 will each have 20 tokens.</p>
 
-{% elif group.treatment == "luck" %}
+{% elif treatment == "luck" %}
 
 <p>The token endowment for all participants is not the same.</p>
 <p>The token endowment has been determined on the basis of random chance.</p>
 <p>In each round, two randomly chosen group members will each have 80 tokens.</p>
 <p>In each round, the other two group members will each have 20 tokens.</p>
 
-{% elif group.treatment == "uncertain" %}
+{% elif treatment == "uncertain" %}
 
 <p>The token endowment for all participants is not the same.</p>
 <p>The token endowment has been determined in the following way.</p>

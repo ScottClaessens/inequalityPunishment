@@ -22,7 +22,8 @@ class Endowments(Page):
         return self.round_number == 1 and self.participant.vars['skippedGame'] is False
 
     def vars_for_template(self):
-        return dict(endowment=self.participant.vars['part2_endowment'])
+        return dict(endowment=self.participant.vars['part2_endowment'],
+                    treatment=self.group.in_round(1).treatment)
 
 
 class DecisionVote(Page):
@@ -32,7 +33,8 @@ class DecisionVote(Page):
     form_fields = ['vote']
 
     def vars_for_template(self):
-        return dict(endowment=self.participant.vars['part2_endowment'])
+        return dict(endowment=self.participant.vars['part2_endowment'],
+                    treatment=self.group.in_round(1).treatment)
 
     def is_displayed(self):
         return self.participant.vars['timeoutGroup'] is False and self.participant.vars['skippedGame'] is False
@@ -61,7 +63,8 @@ class DecisionAllocate(Page):
     form_fields = ['allocation']
 
     def vars_for_template(self):
-        return dict(endowment=self.participant.vars['part2_endowment'])
+        return dict(endowment=self.participant.vars['part2_endowment'],
+                    treatment=self.group.in_round(1).treatment)
 
     def is_displayed(self):
         return self.participant.vars['timeoutGroup'] is False and self.participant.vars['skippedGame'] is False
