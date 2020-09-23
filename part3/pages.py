@@ -7,7 +7,7 @@ import random
 class Demographics(Page):
     form_model = 'player'
     form_fields = ['gender', 'age', 'ethnicity', 'employed', 'religious',
-                   'married', 'education', 'income', 'fair']
+                   'married', 'education', 'income', 'fair', 'manipulation']
 
 
 class Survey(Page):

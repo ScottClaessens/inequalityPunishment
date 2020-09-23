@@ -76,6 +76,13 @@ class Player(BasePlayer):
                                    [2, 'Somewhat unfair'],
                                    [1, 'Extremely unfair']
                                ], widget=widgets.RadioSelectHorizontal)
+    manipulation = models.IntegerField(label="How were endowments distributed in your group?",
+                                       choices=[
+                                           [1, 'Equally'],
+                                           [2, 'By performance in Part 1'],
+                                           [3, 'By random chance'],
+                                           [4, 'By performance in Part 1 with 50% chance and by chance with 50% chance']
+                                       ], widget=widgets.RadioSelectHorizontal)
     attention = models.IntegerField(label="If you are reading this question, please answer with 'Strongly agree'",
                                     choices=[
                                         [5, 'Strongly agree'],

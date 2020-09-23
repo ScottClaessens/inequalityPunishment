@@ -7,22 +7,26 @@
 
 {% block content %}
 
-{% if treatment == "equality" %}
-<p>You have a token endowment of <b>{{endowment}}</b>. Remember, in each round, each group member has an endowment of
-    50 tokens.</p>
-{% elif treatment == "skill" %}
-<p>You have a token endowment of <b>{{endowment}}</b>. Remember, in each round, the top two performers from Part 1 each
-    have an endowment of 80 tokens, and the bottom two performers from Part 1 each have 20 tokens.</p>
-{% elif treatment == "luck" %}
-<p>You have a token endowment of <b>{{endowment}}</b>. Remember, in each round, two randomly chosen group members each
-    have an endowment of 80 tokens, and the other two group members each have 20 tokens.</p>
-{% elif treatment == "uncertain" %}
-<p>You have a token endowment of <b>{{endowment}}</b>. Remember, there is a 50% chance that in each round, the top two
-    performers from Part 1 each have an endowment of 80 tokens, and the bottom two performers from Part 1 each have 20
-    tokens. Alternatively, there is a 50% chance that in each round, two randomly chosen group members each have an
-    endowment of 80 tokens and the other two group members each have 20 tokens. You do not know which of the above
-    rules has been used to determine token endowments in your group.</p>
-{% endif %}
+<p>You have a token endowment of <b>{{endowment}}</b>.</p>
+
+<b>
+    {% if treatment == "equality" %}
+    <p>Remember, in each round, each group member has an endowment of 50 tokens.</p>
+    {% elif treatment == "skill" %}
+    <p>Remember, in each round, the top two performers from Part 1 each have an endowment of 80 tokens, and the bottom two
+        performers from Part 1 each have 20 tokens.</p>
+    {% elif treatment == "luck" %}
+    <p>Remember, in each round, two randomly chosen group members each have an endowment of 80 tokens, and the other two
+        group members each have 20 tokens.</p>
+    {% elif treatment == "uncertain" %}
+    <p>Remember, there is a 50% chance that in each round, the top two performers from Part 1 each have an endowment of
+        80 tokens, and the bottom two performers from Part 1 each have 20 tokens. Alternatively, there is a 50% chance that
+        in each round, two randomly chosen group members each have an endowment of 80 tokens and the other two group members
+        each have 20 tokens. You do not know which of the above rules has been used to determine token endowments in your
+        group.</p>
+    {% endif %}
+</b>
+
 <p>
     The majority of the group voted for a fine rate of <b>{{group.fine_rate}}</b>.
 </p>

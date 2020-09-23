@@ -6,7 +6,7 @@ from otree.api import (
     BaseGroup,
     BasePlayer,
     Currency as c,
-    currency_range,
+    currency_range
 )
 
 author = 'Scott Claessens'

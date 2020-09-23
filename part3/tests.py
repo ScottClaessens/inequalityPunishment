@@ -16,7 +16,8 @@ class PlayerBot(Bot):
             religious="Yes",
             education=6,
             income=2,
-            fair=3
+            fair=3,
+            manipulation=1
         )
         yield pages.Survey, dict(
             sdo1=random.randint(1, 5),
