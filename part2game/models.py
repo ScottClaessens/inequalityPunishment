@@ -118,39 +118,6 @@ class Group(BaseGroup):
                 p.participant.vars['timeoutCount'] = 0
                 p.participant.vars['timeoutGroup'] = False
 
-    def set_fine_rate(self):
-        # get rates the group chose
-        chosen_rates = []
-        for p in self.get_players():
-            chosen_rates.append(p.vote)
-        print("chosen_rates =", chosen_rates)
-        # which of these rates got 2 or more votes?
-        rates_with_two_votes = [k for k, v in dict(Counter(chosen_rates)).items() if v >= 2]
-        if not rates_with_two_votes:
-            # no rate got at least two votes, pick at random
-            fine_rate = random.choice(["0%", "30%", "60%", "80%"])
-        elif len(rates_with_two_votes) == 2:
-            # two rates got two votes each, randomly choose one
-            fine_rate = random.choice(rates_with_two_votes)
-        else:
-            # if only one rate got two votes
-            fine_rate = rates_with_two_votes[0]
-        print("fine_rate =", fine_rate)
-        self.fine_rate = fine_rate
-        # as a decimal
-        if fine_rate == "0%":
-            fine_rate = 0
-        elif fine_rate == "30%":
-            fine_rate = 0.3
-        elif fine_rate == "60%":
-            fine_rate = 0.6
-        elif fine_rate == "80%":
-            fine_rate = 0.8
-        print("fine_rate decimal =", fine_rate)
-        # set fine rate
-        for p in self.get_players():
-            p.participant.vars['part2_finerate'] = fine_rate
-
     def set_payoffs(self):
         group_account = 0
         for p in self.get_players():
@@ -160,16 +127,9 @@ class Group(BaseGroup):
         print('group account =', group_account)
         group_payoff = group_account * 2
         print('group payoff =', group_payoff)
-        fine_rate = self.get_player_by_id(1).participant.vars['part2_finerate']
-        if fine_rate > 0:
-            fixed = c(4)
-        else:
-            fixed = c(0)
         for p in self.get_players():
-            p.fined = (fine_rate * (p.participant.vars['part2_endowment'] - p.allocation)) + fixed
-            print('Player', p.id_in_group, 'fined amount =', p.fined)
             p.payoff = (p.participant.vars['part2_endowment'] - p.allocation) + \
-                       (group_payoff / Constants.players_per_group) - p.fined
+                       (group_payoff / Constants.players_per_group)
             print('Player', p.id_in_group, 'payoff =', p.payoff)
         # and find out if any group members have timed out two rounds in a row
         n = 0
@@ -182,18 +142,13 @@ class Group(BaseGroup):
 
     treatment = models.StringField()
     group_account = models.CurrencyField()
-    fine_rate = models.StringField()
     group_timeout = models.BooleanField()
 
 
 class Player(BasePlayer):
     endowment = models.CurrencyField()
-    vote = models.StringField(label="Which fine rate do you vote for in this round?",
-                               choices=['0%', '30%', '60%', '80%'])
     allocation = models.CurrencyField(label="How many tokens would you like to allocate to the group account "
                                             "in this round?", min=c(0))
-    fined = models.CurrencyField()
-    timeoutVote = models.BooleanField()
     timeoutAllocate = models.BooleanField()
     secsSpentWaiting = models.IntegerField()
     skippedGame = models.BooleanField()

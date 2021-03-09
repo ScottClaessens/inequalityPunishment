@@ -7,16 +7,12 @@
 
 {% block content %}
 <ul>
-    <li>Fine rate voted by majority: <b>{{group.fine_rate}}</b></li>
     <li>Tokens in private account: <b>{{kept}}</b></li>
     <li>Total tokens in group account: <b>{{group.group_account}}</b></li>
     <li>Tokens you got back from the group account: <b>{{back}}</b></li>
-    <li>Fine = {{group.fine_rate}} of {{kept}} = <b>{{fined}}</b></li>
-    <li>Fixed fee = <b>{{fixed}}</b></li>
 </ul>
 <p>
-    Earnings for this round = {{back}} (from group account) + {{kept}} (kept in private account) - {{fined}} (fined) -
-    {{fixed}} (fixed fee) = <b>{{earn}}</b>
+    Earnings for this round = {{back}} (from group account) + {{kept}} (kept in private account) = <b>{{earn}}</b>
 </p>
 
 {% next_button %}

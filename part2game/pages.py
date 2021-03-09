@@ -26,36 +26,6 @@ class Endowments(Page):
                     treatment=self.group.in_round(1).treatment)
 
 
-class DecisionVote(Page):
-    timeout_seconds = 90
-
-    form_model = 'player'
-    form_fields = ['vote']
-
-    def vars_for_template(self):
-        return dict(endowment=self.participant.vars['part2_endowment'],
-                    treatment=self.group.in_round(1).treatment)
-
-    def is_displayed(self):
-        return self.participant.vars['timeoutGroup'] is False and self.participant.vars['skippedGame'] is False
-
-    def before_next_page(self):
-        if self.timeout_happened:
-            self.player.vote = '0%'
-            self.player.timeoutVote = True
-        else:
-            self.player.timeoutVote = False
-
-
-class VoteWait(WaitPage):
-    after_all_players_arrive = 'set_fine_rate'
-
-    def is_displayed(self):
-        return self.participant.vars['timeoutGroup'] is False and self.participant.vars['skippedGame'] is False
-
-    template_name = 'part2game/Wait.html'
-
-
 class DecisionAllocate(Page):
     timeout_seconds = 90
 
@@ -75,7 +45,7 @@ class DecisionAllocate(Page):
             self.player.timeoutAllocate = True
         else:
             self.player.timeoutAllocate = False
-        if self.player.timeoutVote or self.player.timeoutAllocate:
+        if self.player.timeoutAllocate:
             self.participant.vars['timeoutCount'] += 1
         else:
             self.participant.vars['timeoutCount'] = 0
@@ -99,14 +69,10 @@ class Results(Page):
     def vars_for_template(self):
         kept = self.participant.vars['part2_endowment'] - self.player.allocation
         back = self.group.group_account / 2
-        fined = kept * self.participant.vars['part2_finerate']
-        fixed = c(0) if self.group.fine_rate == '0%' else c(4)
-        earn = kept + back - fined - fixed
+        earn = kept + back
         return dict(
             kept=kept,
             back=back,
-            fined=fined,
-            fixed=fixed,
             earn=earn
         )
 
@@ -151,8 +117,6 @@ class Skipped(Page):
 page_sequence = [
     GroupingWait,
     Endowments,
-    DecisionVote,
-    VoteWait,
     DecisionAllocate,
     AllocateWait,
     Results,
